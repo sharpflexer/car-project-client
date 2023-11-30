@@ -1,15 +1,28 @@
 import { Formik, Field } from "formik";
 import SignUpFields from "../../types/SignUpFields";
-import { Link } from "react-router-dom";
 import classes from "./SignUp.module.css";
+import * as Yup from 'yup';
+import InputError from "../InputError/InputError";
 
-function SignUp() {
+const SignUpSchema = Yup.object().shape({
+  email: Yup.string().email('Invalid email!').required('Required!'),
+  login: Yup.string()
+    .min(4, 'Too Short! Minimum 4 symbols.')
+    .max(50, 'Too Long! Maximum 50 symbols.')
+    .required('Required!'),
+  password: Yup.string()
+    .min(8, 'Too Short! Minimum 8 symbols.')
+    .max(50, 'Too Long! Maximum 50 symbols.')
+    .required('Required!')
+});
 
-  const defaultValues: SignUpFields = {
-    email: "",
-    login: "",
-    password: ""
-  }
+const defaultValues: SignUpFields = {
+  email: "",
+  login: "",
+  password: ""
+}
+
+function SignUp({ toSignIn }: { toSignIn: () => void }) {
 
   function doSignUp(values: SignUpFields, setSubmitting: (isSubmitting: boolean) => void) {
     setTimeout(() => {
@@ -21,51 +34,44 @@ function SignUp() {
   return (
     <Formik
       initialValues={defaultValues}
+      validationSchema={SignUpSchema}
       onSubmit={(values, { setSubmitting }) => doSignUp(values, setSubmitting)}
     >
       {({
         handleSubmit,
         isSubmitting,
+        errors,
+        touched
       }) => (
-        <div className={classes.container}>
-        <div className={classes.screen}>
-          <div className={classes.screen__content}>
-            <form className={classes.login} onSubmit={handleSubmit}>
-            <div className={classes.login__field}>
-                <i className={`${classes.login__icon} ${"fas"} ${"fa-user"}`}></i>           
-                <Field className={classes.login__input} name="email" type="email" placeholder="Email"/>
-              </div>
-              <div className={classes.login__field}>
-                <i className={`${classes.login__icon} ${"fas"} ${"fa-user"}`}></i>           
-                <Field className={classes.login__input} name="login" type="login" placeholder="User name"/>
-              </div>
-              <div className={classes.login__field}>
-                <i className={`${classes.login__icon} ${"fas"} ${"fa-user"}`}></i>
-                <Field className={classes.login__input} name="password" type="password" placeholder="Password"/>
-              </div>
-              <button className={`${classes.button} ${classes.login__submit}`} type="submit" disabled={isSubmitting}>
-                <span className={classes.button__text}>Register Now</span>
-                <i className={`${classes.button__icon} ${"fas"} ${"fa-chevron-right"}`}></i>
-              </button>
-              <Link className={classes.register__link} to="/signin">Log In</Link>
-            </form>
-            <div className={classes.social_login}>
-              <h3>log in via</h3>
-              <div className={classes.social_icons}>
-                <a href="#" className={`${classes.social_login__icon} ${"fab"} ${"fa-instagram"}`}></a>
-                <a href="#" className={`${classes.social_login__icon} ${"fab"} ${"fa-facebook"}`}></a>
-                <a href="#" className={`${classes.social_login__icon} ${"fab"} ${"fa-twitter"}`}></a>
-              </div>
-            </div>
+
+        <form className={classes.login} onSubmit={handleSubmit}>
+          <div className={classes.login__field}>
+            <i className={`${classes.login__icon} ${"fas"} ${"fa-user"}`}></i>
+            <Field className={classes.login__input} name="email" type="email" placeholder="Email" />
+            {errors.email && touched.email ? (
+              <InputError error={errors.email} />
+            ) : null}
           </div>
-          <div className={classes.screen__background}>
-            <span className={`${classes.screen__background__shape} ${classes.screen__background__shape4}`}></span>
-            <span className={`${classes.screen__background__shape} ${classes.screen__background__shape3}`}></span>
-            <span className={`${classes.screen__background__shape} ${classes.screen__background__shape2}`}></span>
-            <span className={`${classes.screen__background__shape} ${classes.screen__background__shape1}`}></span>
+          <div className={classes.login__field}>
+            <i className={`${classes.login__icon} ${"fas"} ${"fa-user"}`}></i>
+            <Field className={classes.login__input} name="login" type="login" placeholder="User name" />
+            {errors.login && touched.login ? (
+              <InputError error={errors.login} />
+            ) : null}
           </div>
-        </div>
-      </div>
+          <div className={classes.login__field}>
+            <i className={`${classes.login__icon} ${"fas"} ${"fa-user"}`}></i>
+            <Field className={classes.login__input} name="password" type="password" placeholder="Password" />
+            {errors.password && touched.password ? (
+              <InputError error={errors.password}/>
+            ) : null}
+          </div>
+          <button className={`${classes.button} ${classes.login__submit}`} type="submit" disabled={isSubmitting}>
+            <span className={classes.button__text}>Register Now</span>
+            <i className={`${classes.button__icon} ${"fas"} ${"fa-chevron-right"}`}></i>
+          </button>
+          <p className={classes.register__link} onClick={toSignIn}>Log In</p>
+        </form>
       )}
     </Formik>
   );
