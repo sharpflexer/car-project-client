@@ -177,7 +177,7 @@ body {
 	color: #7875B5;
 }
 
-.social-login {
+.social_login {
 	position: absolute;
 	height: 140px;
 	width: 160px;
@@ -187,19 +187,19 @@ body {
 	color: #fff;
 }
 
-.social-icons {
+.social_icons {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 
-.social-login__icon {
+.social_login__icon {
 	padding: 20px 10px;
 	color: #fff;
 	text-decoration: none;
 	text-shadow: 0px 0px 8px #7875B5;
 }
 
-.social-login__icon:hover {
+.social_login__icon:hover {
 	transform: scale(1.5);
 }
