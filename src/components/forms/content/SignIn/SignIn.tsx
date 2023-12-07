@@ -5,6 +5,9 @@ import classes from "./SignIn.module.css";
 import { AnimatePresence, motion } from "framer-motion";
 import * as Yup from 'yup';
 import InputError from "../InputError/InputError";
+import RequestService from "../../../../services/RequestService"
+import { useContext } from "react";
+import { TokenContext } from "../../../..";
 
 const SignInSchema = Yup.object().shape({
   login: Yup.string()
@@ -25,19 +28,11 @@ const defaultValues: SignInFields = {
 
 function SignIn({ toSignUp }: { toSignUp: () => void }) {
 
+  const {tokenStore} = useContext(TokenContext);
+
   function doSignIn(values: SignInFields, setSubmitting: (isSubmitting: boolean) => void) {
     setTimeout(async () => {
-      await fetch('https://localhost:7191/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          Username: values.login,
-          Password: values.password,
-        })
-      });
+      tokenStore.login(values);
     })
   }
 

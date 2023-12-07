@@ -3,6 +3,8 @@ import SignUpFields from "../../types/SignUpFields";
 import classes from "./SignUp.module.css";
 import * as Yup from 'yup';
 import InputError from "../InputError/InputError";
+import { useContext } from "react";
+import { TokenContext } from "../../../..";
 
 const SignUpSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email!').required('Required!'),
@@ -24,11 +26,17 @@ const defaultValues: SignUpFields = {
 
 function SignUp({ toSignIn }: { toSignIn: () => void }) {
 
+  const {tokenStore} = useContext(TokenContext);
+
   function doSignUp(values: SignUpFields, setSubmitting: (isSubmitting: boolean) => void) {
     setTimeout(() => {
       alert(JSON.stringify(values, null, 2));
       setSubmitting(false);
     }, 400);
+  }
+
+  async function logOut(): Promise<void> {
+    await tokenStore.logout(toSignIn);
   }
 
   return (
@@ -71,6 +79,7 @@ function SignUp({ toSignIn }: { toSignIn: () => void }) {
             <i className={`${classes.button__icon} ${"fas"} ${"fa-chevron-right"}`}></i>
           </button>
           <p className={classes.register__link} onClick={toSignIn}>Log In</p>
+          <p className={classes.register__link} onClick={logOut}>Log Out</p>
         </form>
       )}
     </Formik>
