@@ -26,10 +26,19 @@ const defaultValues: SignInFields = {
 function SignIn({ toSignUp }: { toSignUp: () => void }) {
 
   function doSignIn(values: SignInFields, setSubmitting: (isSubmitting: boolean) => void) {
-    setTimeout(() => {
-      alert(JSON.stringify(values, null, 2));
-      setSubmitting(false);
-    }, 400);
+    setTimeout(async () => {
+      await fetch('https://localhost:7191/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          Username: values.login,
+          Password: values.password,
+        })
+      });
+    })
   }
 
   return (
