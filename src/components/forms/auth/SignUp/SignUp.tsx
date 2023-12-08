@@ -1,11 +1,11 @@
 import { Formik, Field } from "formik";
-import SignUpFields from "../../types/SignUpFields";
-import classes from "./SignUp.module.css";
-import * as Yup from 'yup';
-import InputError from "../InputError/InputError";
 import { useContext } from "react";
 import { StoreContext } from "../../../..";
 import RequestService from "../../../../services/RequestService";
+import SignUpFields from "../../types/SignUpFields";
+import InputError from "../InputError/InputError";
+import * as Yup from "yup";
+import classes from "./SignUp.module.css"
 
 const SignUpSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email!').required('Required!'),

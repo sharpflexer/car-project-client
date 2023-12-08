@@ -20,7 +20,7 @@ export default class TokenStore{
                this.setAuth(true)
           } catch(e) {
                console.log(e);
-          }
+          }         
      }
 
      async logout(toSignIn: () => void) : Promise<void>{

@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import classes from "./Authorize.module.css";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
-import SignUp from "./SignUp/SignUp";
-import SignIn from "./SignIn/SignIn";
+import SignUp from "../SignUp/SignUp";
+import SignIn from "../SignIn/SignIn";
 
 function Authorize() {
     const [isSignIn, setSignIn] = useState(true);
