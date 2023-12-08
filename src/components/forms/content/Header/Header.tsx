@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 import classes from "./Header.module.css";
+import { StoreContext } from "../../../..";
+import { useContext } from "react";
 
 function Header() {
+
+    const tokenStore = useContext(StoreContext).tokenStore;
 
     return (
         <div className={classes.layout}>
@@ -10,9 +14,9 @@ function Header() {
                 <Link className={classes.linkLayout + " " + classes.catalog} to="../catalog">
                     <div className={classes.element}>Каталог</div>
                 </Link>
-                <Link className={classes.linkLayout + " " + classes.admin}  to="../admin">
+                {tokenStore.role === Role.Admin ? (<Link className={classes.linkLayout + " " + classes.admin} to="../admin">
                     <div className={classes.element}>Панель администрирования</div>
-                </Link>
+                </Link>) : null}
             </div>
         </div>
     );
