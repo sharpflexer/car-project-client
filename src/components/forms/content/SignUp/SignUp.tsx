@@ -4,7 +4,8 @@ import classes from "./SignUp.module.css";
 import * as Yup from 'yup';
 import InputError from "../InputError/InputError";
 import { useContext } from "react";
-import { TokenContext } from "../../../..";
+import { StoreContext } from "../../../..";
+import RequestService from "../../../../services/RequestService";
 
 const SignUpSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email!').required('Required!'),
@@ -26,13 +27,11 @@ const defaultValues: SignUpFields = {
 
 function SignUp({ toSignIn }: { toSignIn: () => void }) {
 
-  const {tokenStore} = useContext(TokenContext);
+  const {tokenStore} = useContext(StoreContext);
 
-  function doSignUp(values: SignUpFields, setSubmitting: (isSubmitting: boolean) => void) {
-    setTimeout(() => {
-      alert(JSON.stringify(values, null, 2));
+  async function doSignUp(values: SignUpFields, setSubmitting: (isSubmitting: boolean) => void) : Promise<void> {
+      await RequestService.Register(values);
       setSubmitting(false);
-    }, 400);
   }
 
   async function logOut(): Promise<void> {

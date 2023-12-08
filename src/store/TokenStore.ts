@@ -13,7 +13,7 @@ export default class TokenStore{
           this.isAuth = bool;
      }
 
-     async login({login, password}: SignInFields){
+     async login({login, password}: SignInFields) : Promise<void>{
           try{
                const response = await RequestService.Login({login, password});
                localStorage.setItem('access_token', response.data);
@@ -23,7 +23,7 @@ export default class TokenStore{
           }
      }
 
-     async logout(toSignIn: () => void){
+     async logout(toSignIn: () => void) : Promise<void>{
           try{
                await RequestService.Logout(toSignIn);
                localStorage.removeItem('access_token');

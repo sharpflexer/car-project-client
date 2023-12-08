@@ -1,13 +1,10 @@
 import { Formik, Field } from "formik";
 import SignInFields from "../../types/SignInFields";
-import { Link } from "react-router-dom";
 import classes from "./SignIn.module.css";
-import { AnimatePresence, motion } from "framer-motion";
 import * as Yup from 'yup';
 import InputError from "../InputError/InputError";
-import RequestService from "../../../../services/RequestService"
 import { useContext } from "react";
-import { TokenContext } from "../../../..";
+import { StoreContext } from "../../../..";
 
 const SignInSchema = Yup.object().shape({
   login: Yup.string()
@@ -28,12 +25,10 @@ const defaultValues: SignInFields = {
 
 function SignIn({ toSignUp }: { toSignUp: () => void }) {
 
-  const {tokenStore} = useContext(TokenContext);
+  const {tokenStore} = useContext(StoreContext);
 
-  function doSignIn(values: SignInFields, setSubmitting: (isSubmitting: boolean) => void) {
-    setTimeout(async () => {
-      tokenStore.login(values);
-    })
+  async function doSignIn(values: SignInFields, setSubmitting: (isSubmitting: boolean) => void) : Promise<void> {
+      await tokenStore.login(values);
   }
 
   return (

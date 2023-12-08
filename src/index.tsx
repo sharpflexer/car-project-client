@@ -3,14 +3,11 @@ import ReactDOM from 'react-dom/client';
 import App from './components/App';
 import { BrowserRouter } from 'react-router-dom';
 import TokenStore from './store/TokenStore';
-
-interface ITokenStore {
-  tokenStore: TokenStore
-}
+import { IStoreContext } from './interfaces/IStoreContext';
 
 const tokenStore = new TokenStore();
 
-export const TokenContext = React.createContext<ITokenStore>({tokenStore});
+export const StoreContext = React.createContext<IStoreContext>({tokenStore});
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -18,9 +15,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <TokenContext.Provider value={{ tokenStore }}>
+      <StoreContext.Provider value={{ tokenStore }}>
         <App />
-      </TokenContext.Provider>
+      </StoreContext.Provider>
     </BrowserRouter>
   </React.StrictMode>
 );
