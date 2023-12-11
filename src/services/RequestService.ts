@@ -4,13 +4,13 @@ import SignInFields from "../components/forms/types/SignInFields";
 import SignUpFields from "../components/forms/types/SignUpFields";
 import { useNavigate } from "react-router-dom";
 import { ILogin } from "../interfaces/ILogin";
+import { Car } from "../types/Car";
 
 
 /***
  * Сервис для отправки запросов на сервер.
  */   
 class RequestService{
-
     /***
      *  Экземпляр axios с необходимиыми настройками.
      */
@@ -57,6 +57,10 @@ class RequestService{
         if(response.status === 200){
             toSignIn();
         }
+    }
+
+    public async GetCars(): Promise<Car[]> {
+        return await this.instance.get("/api/car/read");
     }
 }
 
