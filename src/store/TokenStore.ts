@@ -1,6 +1,7 @@
 import { makeAutoObservable } from "mobx";
 import RequestService from "../services/RequestService";
 import SignInFields from "../components/forms/types/SignInFields";
+import { Role } from "../enums/Role";
 
 export default class TokenStore{
      isAuth = false;
@@ -18,8 +19,9 @@ export default class TokenStore{
      async login({login, password}: SignInFields) : Promise<void>{
           try{
                const response = await RequestService.Login({login, password});
-               localStorage.setItem('access_token', response.data.access_token);
-               this.setAuth(true, response.data.role)
+               localStorage.setItem('access_token', response.data.accessToken);
+               this.setAuth(true, response.data.roleName);
+               console.log(response.data.role);
           } catch(e) {
                console.log(e);
           }         
