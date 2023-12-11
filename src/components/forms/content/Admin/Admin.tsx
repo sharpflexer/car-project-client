@@ -1,11 +1,11 @@
-import Main from "../Main/Main";
+import Layout from "../Layout/Layout";
 import classes from "./Admin.module.css";
 
 function Admin() {
     return (
-        <Main>
+        <Layout>
             This is the admin!
-        </Main>
+        </Layout>
     );
 }
 

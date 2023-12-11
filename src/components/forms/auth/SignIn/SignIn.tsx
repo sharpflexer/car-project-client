@@ -27,12 +27,12 @@ const defaultValues: SignInFields = {
 function SignIn({ toSignUp }: { toSignUp: () => void }) {
 
   const {tokenStore} = useContext(StoreContext); 
-  const toCatalog = useNavigate();
+  const navigate = useNavigate();
   
   async function doSignIn(values: SignInFields, setSubmitting: (isSubmitting: boolean) => void) : Promise<void> {
       await tokenStore.login(values);
       if(tokenStore.isAuth){
-        toCatalog("/catalog");
+        navigate("/catalog");
       }
   }
 

@@ -21,7 +21,6 @@ export default class TokenStore{
                const response = await RequestService.Login({login, password});
                localStorage.setItem('access_token', response.data.accessToken);
                this.setAuth(true, response.data.roleName);
-               console.log(response.data.role);
           } catch(e) {
                console.log(e);
           }         

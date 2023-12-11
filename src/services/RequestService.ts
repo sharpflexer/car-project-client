@@ -3,6 +3,7 @@ import setupInterceptorsTo from "../http/Interceptors";
 import SignInFields from "../components/forms/types/SignInFields";
 import SignUpFields from "../components/forms/types/SignUpFields";
 import { useNavigate } from "react-router-dom";
+import { ILogin } from "../interfaces/ILogin";
 
 
 /***

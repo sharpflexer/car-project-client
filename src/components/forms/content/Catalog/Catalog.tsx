@@ -1,11 +1,11 @@
-import Main from "../Main/Main";
+import Layout from "../Layout/Layout";
 import classes from "./Catalog.module.css";
 
 function Catalog(){
     return (
-        <Main>
+        <Layout>
             This is the catalog!
-        </Main>
+        </Layout>
     );
 }
 

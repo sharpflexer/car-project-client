@@ -6,8 +6,12 @@ import { Role } from "../../../../enums/Role";
 
 function Header() {
 
-    const tokenStore = useContext(StoreContext).tokenStore;
+    const {tokenStore} = useContext(StoreContext);
 
+    function hasAccess(...rolesWithAccess: Role[]): boolean{
+        return rolesWithAccess.includes(tokenStore.role);
+    }
+ 
     return (
         <div className={classes.layout}>
             <label className={classes.title}>Car Shop Online</label>
@@ -15,7 +19,8 @@ function Header() {
                 <Link className={classes.linkLayout + " " + classes.catalog} to="../catalog">
                     <div className={classes.element}>Каталог</div>
                 </Link>
-                {tokenStore.role === Role.Admin || tokenStore.role === Role.Manager ? (<Link className={classes.linkLayout + " " + classes.admin} to="../admin">
+                {hasAccess(Role.Admin, Role.Manager) ? (
+                <Link className={classes.linkLayout + " " + classes.admin} to="../admin">
                     <div className={classes.element}>Панель администрирования</div>
                 </Link>) : null}
             </div>

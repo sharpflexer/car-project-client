@@ -1,8 +1,8 @@
 import IMain from "../../../../interfaces/IMain";
 import Header from "../Header/Header";
-import classes from "./Main.module.css";
+import classes from "./Layout.module.css";
 
-function Main({children} : IMain){
+function Layout({children} : IMain){
     return (
         <div>
             <Header/>
@@ -12,4 +12,4 @@ function Main({children} : IMain){
     );
 }
 
-export default Main;
+export default Layout;
