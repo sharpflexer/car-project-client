@@ -3,6 +3,7 @@ import setupInterceptorsTo from "../http/Interceptors";
 import SignInFields from "../components/forms/types/SignInFields";
 import SignUpFields from "../components/forms/types/SignUpFields";
 import { useNavigate } from "react-router-dom";
+import { ILogin } from "../interfaces/ILogin";
 
 
 /***
@@ -28,7 +29,7 @@ class RequestService{
     /***
      * Выполняет асихнронный вход в аккаунт.
      */
-    public async Login({login, password} : SignInFields) : Promise<AxiosResponse<string, string>>{
+    public async Login({login, password} : SignInFields) : Promise<AxiosResponse<ILogin, ILogin>>{
         return await this.instance.post("/api/auth/login", 
         {
             username: login,
