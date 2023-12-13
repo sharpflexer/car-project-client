@@ -60,7 +60,7 @@ class RequestService{
     }
 
     public async GetCars(): Promise<Car[]> {
-        return await this.instance.get("/api/car/read");
+        return (await this.instance.get("/api/car/read")).data;
     }
 }
 
