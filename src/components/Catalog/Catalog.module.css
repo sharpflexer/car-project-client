@@ -1,0 +1,11 @@
+.list{
+    display: flex;
+    flex-direction: column;
+    height:620px;
+    justify-content: space-around;
+}
+
+.items{
+    background-color: #a19cdf;
+    border-radius: 20px;
+}

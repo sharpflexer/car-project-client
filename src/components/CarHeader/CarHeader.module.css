@@ -1,0 +1,14 @@
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.item{
+    display: flex;
+    padding: 15px;
+    padding-inline: 50px;
+    border-style: solid;
+    border-color: #4c489d79;
+    justify-content: space-between;
+}

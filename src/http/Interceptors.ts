@@ -7,7 +7,7 @@ import axios, { AxiosError, AxiosInstance, InternalAxiosRequestConfig } from 'ax
 const onRequest = (config: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
     const token = localStorage.getItem('access_token');
     if (token) {
-        config.headers.Authorization = "Bearer " + {token};
+        config.headers.Authorization = "Bearer " + token;
         console.info(`[request] [${JSON.stringify(config)}]`);
     }
     return config;

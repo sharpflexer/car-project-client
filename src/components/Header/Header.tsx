@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import classes from "./Header.module.css";
-import { StoreContext } from "../../../..";
+import { StoreContext } from "../..";
 import { useContext } from "react";
-import { Role } from "../../../../enums/Role";
+import { Role } from "../../enums/Role";
 
 function Header() {
 
