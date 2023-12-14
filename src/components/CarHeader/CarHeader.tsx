@@ -3,61 +3,44 @@ import ReadonlyCar from "../../types/ReadonlyCar";
 import { Filter } from "../../types/Filter";
 
 interface ICarHeader {
-    filterBy: (property: keyof ReadonlyCar,
-        isDescending: boolean,
-        setDescending: (value: Filter) => void)
-        => void;
-    whichIsDesc: Filter;
-    setWhichIsDesc: (value: Filter) => void;
+    filterBy: (property: keyof ReadonlyCar) => void;
 }
 
-function CarHeader({ filterBy, whichIsDesc, setWhichIsDesc }: ICarHeader) {
-
-    function changeFilterBy(property: keyof ReadonlyCar) {
-        if(whichIsDesc.field === property){
-            setWhichIsDesc(whichIsDesc);
-            filterBy(whichIsDesc.field, whichIsDesc.isDesc, setWhichIsDesc);
-        }
-        else{
-            setWhichIsDesc({ field: property, isDesc: false });
-            filterBy(property, false, setWhichIsDesc);
-        }      
-    }
-
+function CarHeader({ filterBy}: ICarHeader) {
     return (
         <div className={classes.header}>
             <div className={classes.item}>
                 №
                 <button className={classes.filter}
-                    onClick={() => changeFilterBy("id")}>
+                    onClick={() => filterBy("id")}>
                     ^
                 </button>
             </div>
             <div className={classes.item}>
                 Brand
                 <button className={classes.filter}
-                    onClick={() => changeFilterBy("brand")}>
+                    onClick={() => filterBy("brand")}>
                     ^
                 </button>
             </div>
             <div className={classes.item}>
                 Model
                 <button className={classes.filter}
-                    onClick={() => changeFilterBy("model")}>
+                    onClick={() => filterBy("model")}>
                     ^
                 </button>
             </div>
             <div className={classes.item}>
                 Color
                 <button className={classes.filter}
-                    onClick={() => changeFilterBy("color")}>
+                    onClick={() => filterBy("color")}>
                     ^
                 </button>
             </div>
             <div className={classes.item}>
                 Price
                 <button className={classes.filter}
-                    onClick={() => changeFilterBy("price")}>
+                    onClick={() => filterBy("price")}>
                     ^
                 </button>
             </div>

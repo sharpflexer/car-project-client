@@ -9,7 +9,7 @@ import { Filter } from "../../types/Filter";
 
 function Catalog() {
     const [cars, setCars] = useState<ReadonlyCar[]>([]);
-    const [whichIsDesc, setWhichIsDesc] = useState<Filter>({field:"id", isDesc: false});
+    const [filterState, setFilterState] = useState<Filter>({field:"id", isDesc: false});
 
     useEffect(() => {
         const fetchCars = async () => {
@@ -23,12 +23,19 @@ function Catalog() {
         <CarRow car={car} />
     ));
 
-    function filterBy(property: keyof ReadonlyCar, isDescending: boolean, setWhichIsDesc: (value: Filter) => void) {
+    function filterBy(property: keyof ReadonlyCar) {
+        let isDesc = filterState.isDesc;
+
+        if(filterState.field !== property) {
+            setFilterState({ field: property, isDesc: false });
+            isDesc = false;
+        }
+
         const sortedCars = cars
             .filter((car) => car.hasOwnProperty(property))
             .sort((a, b) => {
-                const aValue = isDescending ? a[property] : b[property];
-                const bValue = isDescending ? b[property] : a[property];
+                const aValue = isDesc ? a[property] : b[property];
+                const bValue = isDesc ? b[property] : a[property];
 
                 if (typeof aValue === 'number' && typeof bValue === 'number') {
                     return bValue - aValue;
@@ -40,13 +47,13 @@ function Catalog() {
             });
 
         setCars(sortedCars);
-        setWhichIsDesc({field: property, isDesc: !isDescending});
+        setFilterState({field: property, isDesc: !isDesc});
     }
 
     return (
         <Layout>
             <div className={classes.list}>
-                <CarHeader filterBy={filterBy} whichIsDesc={whichIsDesc} setWhichIsDesc={setWhichIsDesc}/>
+                <CarHeader filterBy={filterBy}/>
                 <div className={classes.items}>
                     {mapItems()}
                 </div>
