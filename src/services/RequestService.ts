@@ -1,10 +1,10 @@
 import axios, { AxiosInstance, AxiosResponse } from "axios";
 import setupInterceptorsTo from "../http/Interceptors";
-import SignInFields from "../components/forms/types/SignInFields";
-import SignUpFields from "../components/forms/types/SignUpFields";
-import { useNavigate } from "react-router-dom";
+import SignInFields from "../types/SignInFields";
+import SignUpFields from "../types/SignUpFields";
 import { ILogin } from "../interfaces/ILogin";
 import { Car } from "../types/Car";
+import ReadonlyCar from "../types/ReadonlyCar";
 
 
 /***
@@ -59,8 +59,10 @@ class RequestService{
         }
     }
 
-    public async GetCars(): Promise<Car[]> {
-        return (await this.instance.get("/api/car/read")).data;
+    public async GetCars(): Promise<ReadonlyCar[]> {
+        const result = (await this.instance.get<Car[]>("/api/car/read")).data;
+
+        return result.map<ReadonlyCar>(car => new ReadonlyCar(car));
     }
 }
 

@@ -1,6 +1,6 @@
 import { makeAutoObservable } from "mobx";
 import RequestService from "../services/RequestService";
-import SignInFields from "../components/forms/types/SignInFields";
+import SignInFields from "../types/SignInFields";
 import { Role } from "../enums/Role";
 
 export default class TokenStore{

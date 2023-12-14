@@ -1,13 +1,14 @@
 import { Formik, Field } from "formik";
 import { useContext } from "react";
-import { StoreContext } from "../../../..";
-import SignInFields from "../../types/SignInFields";
 import InputError from "../InputError/InputError";
-import classes from "./SignIn.module.css";
-import * as Yup from 'yup';
-import { useNavigate } from "react-router-dom";
+import * as Yup from "yup";
+import classes from "./SignUp.module.css"
+import SignUpFields from "../../../types/SignUpFields";
+import { StoreContext } from "../../..";
+import RequestService from "../../../services/RequestService";
 
-const SignInSchema = Yup.object().shape({
+const SignUpSchema = Yup.object().shape({
+  email: Yup.string().email('Invalid email!').required('Required!'),
   login: Yup.string()
     .min(4, 'Too Short! Minimum 4 symbols.')
     .max(50, 'Too Long! Maximum 50 symbols.')
@@ -18,29 +19,30 @@ const SignInSchema = Yup.object().shape({
     .required('Required!')
 });
 
-
-const defaultValues: SignInFields = {
+const defaultValues: SignUpFields = {
+  email: "",
   login: "",
   password: ""
 }
 
-function SignIn({ toSignUp }: { toSignUp: () => void }) {
+function SignUp({ toSignIn }: { toSignIn: () => void }) {
 
-  const {tokenStore} = useContext(StoreContext); 
-  const navigate = useNavigate();
-  
-  async function doSignIn(values: SignInFields, setSubmitting: (isSubmitting: boolean) => void) : Promise<void> {
-      await tokenStore.login(values);
-      if(tokenStore.isAuth){
-        navigate("/catalog");
-      }
+  const {tokenStore} = useContext(StoreContext);
+
+  async function doSignUp(values: SignUpFields, setSubmitting: (isSubmitting: boolean) => void) : Promise<void> {
+      await RequestService.Register(values);
+      setSubmitting(false);
+  }
+
+  async function logOut(): Promise<void> {
+    await tokenStore.logout(toSignIn);
   }
 
   return (
     <Formik
       initialValues={defaultValues}
-      validationSchema={SignInSchema}
-      onSubmit={(values, { setSubmitting }) => doSignIn(values, setSubmitting)}
+      validationSchema={SignUpSchema}
+      onSubmit={(values, { setSubmitting }) => doSignUp(values, setSubmitting)}
     >
       {({
         handleSubmit,
@@ -52,9 +54,16 @@ function SignIn({ toSignUp }: { toSignUp: () => void }) {
         <form className={classes.login} onSubmit={handleSubmit}>
           <div className={classes.login__field}>
             <i className={`${classes.login__icon} ${"fas"} ${"fa-user"}`}></i>
+            <Field className={classes.login__input} name="email" type="email" placeholder="Email" />
+            {errors.email && touched.email ? (
+              <InputError error={errors.email} />
+            ) : null}
+          </div>
+          <div className={classes.login__field}>
+            <i className={`${classes.login__icon} ${"fas"} ${"fa-user"}`}></i>
             <Field className={classes.login__input} name="login" type="login" placeholder="User name" />
             {errors.login && touched.login ? (
-              <InputError error={errors.login}/>
+              <InputError error={errors.login} />
             ) : null}
           </div>
           <div className={classes.login__field}>
@@ -65,14 +74,15 @@ function SignIn({ toSignUp }: { toSignUp: () => void }) {
             ) : null}
           </div>
           <button className={`${classes.button} ${classes.login__submit}`} type="submit" disabled={isSubmitting}>
-            <span className={classes.button__text}>Log In Now</span>
+            <span className={classes.button__text}>Register Now</span>
             <i className={`${classes.button__icon} ${"fas"} ${"fa-chevron-right"}`}></i>
           </button>
-          <p className={classes.register__link} onClick={toSignUp}>Register</p>
+          <p className={classes.register__link} onClick={toSignIn}>Log In</p>
+          <p className={classes.register__link} onClick={logOut}>Log Out</p>
         </form>
       )}
     </Formik>
   );
 }
 
-export default SignIn;
+export default SignUp;

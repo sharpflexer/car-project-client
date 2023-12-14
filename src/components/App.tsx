@@ -1,10 +1,10 @@
 
 import {Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import classes from "./App.module.css";
-import Header from './forms/content/Header/Header';
-import Catalog from './forms/content/Catalog/Catalog';
-import Admin from './forms/content/Admin/Admin';
-import Authorize from './forms/auth/Authorize/Authorize';
+import Header from './Header/Header';
+import Catalog from './Catalog/Catalog';
+import Admin from './Admin/Admin';
+import Authorize from './auth/Authorize/Authorize';
 
 function App() {
   const location = useLocation();

@@ -1,7 +1,7 @@
-import { Car } from "../../../../types/Car";
+import ReadonlyCar from "../../types/ReadonlyCar";
 import classes from "./CarRow.module.css";
 
-function CarRow({ car }: { car: Car }) {
+function CarRow({ car }: { car: ReadonlyCar }) {
     return (
         <div className={classes.card}>
             <div className={classes.items}>
@@ -9,7 +9,7 @@ function CarRow({ car }: { car: Car }) {
                     №{car.id}
                 </div>
                 <div>
-                    {car.brand.name} {car.model.name} {car.color.name}
+                    {car.brand} {car.model} {car.color}
                 </div>
                 <div>
                     {car.price} рублей
