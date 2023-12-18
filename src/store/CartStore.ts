@@ -1,14 +1,18 @@
 import { action, makeAutoObservable, observable, observe } from "mobx";
+import ReadonlyCar from "../types/ReadonlyCar";
 
 export default class CartStore{
-    goodsCount: number;
+    cars: ReadonlyCar[] = [];
 
     constructor(){
-        this.goodsCount = 0;
         makeAutoObservable(this);
     }
 
-    increaseGoods = () => {
-        this.goodsCount = this.goodsCount + 1;     
+    addToCart = (car: ReadonlyCar) => {
+        this.cars.push(car); 
+    }
+
+    removeFromCart(car: ReadonlyCar){
+        this.cars = this.cars.filter(c => c.id === car.id);
     }
 }

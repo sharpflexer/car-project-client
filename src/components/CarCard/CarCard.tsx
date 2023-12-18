@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { StoreContext } from "../..";
 import ReadonlyCar from "../../types/ReadonlyCar";
-import classes from "./CarRow.module.css";
+import classes from "./CarCard.module.css";
 
-function CarRow({ car }: { car: ReadonlyCar }) {
+function CarCard({ car }: { car: ReadonlyCar }) {
 
     const { cartStore } = useContext(StoreContext);
 
@@ -20,7 +20,7 @@ function CarRow({ car }: { car: ReadonlyCar }) {
                     {car.price} рублей
                 </div>
                 <button className={classes.cartButton}
-                    onClick={() => cartStore.increaseGoods()}>
+                    onClick={() => cartStore.addToCart(car)}>
                     В корзину
                 </button>
             </div>
@@ -32,4 +32,4 @@ function CarRow({ car }: { car: ReadonlyCar }) {
     );
 }
 
-export default CarRow;
+export default CarCard;

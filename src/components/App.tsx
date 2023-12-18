@@ -5,10 +5,11 @@ import Header from './Header/Header';
 import Catalog from './Catalog/Catalog';
 import Admin from './Admin/Admin';
 import Authorize from './auth/Authorize/Authorize';
+import Cart from './Cart/Cart';
 
 function App() {
   const location = useLocation();
-  
+
   return (
     <div className="App">
       <div className={classes.authorize}>
@@ -17,6 +18,7 @@ function App() {
           <Route path="authorize" element={<Authorize />} />
           <Route path="catalog" element={<Catalog />}/>
           <Route path="admin" element={<Admin />}/>
+          <Route path="cart" element={<Cart />}/>
         </Routes>
       </div>
     </div>

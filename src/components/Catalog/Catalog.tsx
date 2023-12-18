@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import CarRow from "../CarRow/CarRow";
+import CarCard from "../CarCard/CarCard";
 import Layout from "../Layout/Layout";
 import classes from "./Catalog.module.css";
 import RequestService from "../../services/RequestService";
@@ -23,7 +23,7 @@ function Catalog() {
     }, []);
  
     const mapItems = () => cars.map(car => (
-        <CarRow car={car} />
+        <CarCard car={car} />
     ));
 
     function filterBy(property: keyof ReadonlyCar) {

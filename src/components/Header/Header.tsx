@@ -4,11 +4,13 @@ import { StoreContext } from "../..";
 import { useContext, useState } from "react";
 import { Role } from "../../enums/Role";
 import { observer } from "mobx-react";
-import CartStore from "../../store/CartStore";
+import ModalCart from "../ModalCart/ModalCart";
 
 const Header = observer(() => {
     const { cartStore } = useContext(StoreContext);
     const { tokenStore } = useContext(StoreContext);
+
+    const [isCartActive, setCartActive] = useState(false);
 
     function hasAccess(...rolesWithAccess: Role[]): boolean {
         return rolesWithAccess.includes(tokenStore.role);
@@ -25,15 +27,18 @@ const Header = observer(() => {
                     <Link className={classes.linkLayout + " " + classes.admin} to="../admin">
                         <div className={classes.element}>Панель администрирования</div>
                     </Link>) : null}
-                <div className={classes.cart}>
-                    Товары: {cartStore.goodsCount}
-                    <button>
+                <div className={classes.cartContainer}>
+                    Товары: {cartStore.cars.length}
+                    <button className={classes.linkLayout + " " + classes.cart} 
+                    onClick={() => setCartActive(true)}>
                         Корзина
                     </button>
                 </div>
             </div>
+            {isCartActive ? <ModalCart isCartActive={isCartActive} setCartActive={setCartActive} />
+                : null}
         </div>
     );
 });
 
-    export default Header;
+export default Header;
