@@ -6,7 +6,7 @@ interface ICarHeader {
     filterBy: (property: keyof ReadonlyCar) => void;
 }
 
-function CarHeader({ filterBy}: ICarHeader) {
+function CarHeader({ filterBy }: ICarHeader) {
     return (
         <div className={classes.header}>
             <div className={classes.item}>

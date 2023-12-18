@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import CarRow from "../CarRow/CarRow";
 import Layout from "../Layout/Layout";
 import classes from "./Catalog.module.css";
@@ -6,10 +6,13 @@ import RequestService from "../../services/RequestService";
 import CarHeader from "../CarHeader/CarHeader";
 import ReadonlyCar from "../../types/ReadonlyCar";
 import { Filter } from "../../types/Filter";
+import { StoreContext } from "../..";
+import React from "react";
 
 function Catalog() {
     const [cars, setCars] = useState<ReadonlyCar[]>([]);
     const [filterState, setFilterState] = useState<Filter>({field:"id", isDesc: false});
+    
 
     useEffect(() => {
         const fetchCars = async () => {
