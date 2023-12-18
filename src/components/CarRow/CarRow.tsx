@@ -5,7 +5,7 @@ import classes from "./CarRow.module.css";
 
 function CarRow({ car }: { car: ReadonlyCar }) {
 
-    const {cartStore} = useContext(StoreContext);
+    const { cartStore } = useContext(StoreContext);
 
     return (
         <div className={classes.card}>
@@ -20,11 +20,14 @@ function CarRow({ car }: { car: ReadonlyCar }) {
                     {car.price} рублей
                 </div>
                 <button className={classes.cartButton}
-                onClick={cartStore.increaseGoods}>
+                    onClick={() => cartStore.increaseGoods()}>
                     В корзину
                 </button>
             </div>
-            <img className={classes.image} src={`${process.env.PUBLIC_URL}/png/lada.png`}></img>
+            <img
+                className={classes.image}
+                src={`${process.env.PUBLIC_URL}/png/lada.png`}>
+            </img>
         </div>
     );
 }

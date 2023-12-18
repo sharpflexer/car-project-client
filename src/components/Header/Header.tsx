@@ -3,10 +3,12 @@ import classes from "./Header.module.css";
 import { StoreContext } from "../..";
 import { useContext, useState } from "react";
 import { Role } from "../../enums/Role";
+import { observer } from "mobx-react";
+import CartStore from "../../store/CartStore";
 
-function Header() {
-
-    const { tokenStore, cartStore } = useContext(StoreContext);
+const Header = observer(() => {
+    const { cartStore } = useContext(StoreContext);
+    const { tokenStore } = useContext(StoreContext);
 
     function hasAccess(...rolesWithAccess: Role[]): boolean {
         return rolesWithAccess.includes(tokenStore.role);
@@ -32,6 +34,6 @@ function Header() {
             </div>
         </div>
     );
-}
+});
 
-export default Header;
+    export default Header;

@@ -55,3 +55,13 @@
     text-decoration: none;
 	cursor: pointer;
 }
+
+.cart{
+    grid-column-start: 4;
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    height: 100%;
+    justify-content: space-around;
+    align-items: flex-end;
+}
