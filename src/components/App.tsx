@@ -6,6 +6,7 @@ import Catalog from './Catalog/Catalog';
 import Admin from './Admin/Admin';
 import Authorize from './auth/Authorize/Authorize';
 import Cart from './Cart/Cart';
+import Scroll from './Scroll/Scroll';
 
 function App() {
   const location = useLocation();
@@ -18,7 +19,6 @@ function App() {
           <Route path="authorize" element={<Authorize />} />
           <Route path="catalog" element={<Catalog />}/>
           <Route path="admin" element={<Admin />}/>
-          <Route path="cart" element={<Cart />}/>
         </Routes>
       </div>
     </div>

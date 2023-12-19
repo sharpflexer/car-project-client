@@ -30,42 +30,61 @@
     font-size: 24;
     color: #4C489D;
 }
-.admin{
-    grid-column-start: 3; 
+
+.admin {
+    grid-column-start: 3;
 }
-.linkContainer{
+
+.linkContainer {
     display: grid;
     grid-template: 100% / 10% 2% 15% 1fr;
     width: 100%;
     height: 46px;
 }
 
-.linkLayout{
+.linkLayout {
     background: #fff;
-	font-size: 14px;
-	padding: 16px 20px;
-	border-radius: 26px;
-	border: 1px solid #D4D3E8;
-	text-transform: uppercase;
-	font-weight: 700;
-	display: flex;
-	align-items: center;
+    font-size: 14px;
+    padding: 16px 20px;
+    border-radius: 26px;
+    border: 1px solid #D4D3E8;
+    text-transform: uppercase;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
     justify-content: center;
-	box-shadow: 0px 2px 2px #5C5696;
+    box-shadow: 0px 2px 2px #5C5696;
     text-decoration: none;
-	cursor: pointer;
+    cursor: pointer;
 }
 
-.cartContainer{
+.cartContainer {
     grid-column-start: 4;
     display: flex;
-    flex-direction: column;
     width: 95%;
     height: 100%;
-    justify-content: space-around;
-    align-items: flex-end;
+    justify-content: flex-end;
+    align-items: center;
 }
 
-.cart{
+.cart {
     height: 50%;
+    width: 120px;
+    position: relative;
+    color: #4C489D;
+    font-weight: 700;
+}
+
+.cartCount {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: #C7C5F4;
+    border-radius: 10px;
+    width: 20px;
+    height: 20px;
+    margin-bottom: 30px;
+    color: #4C489D;
+    text-align: center;
 }

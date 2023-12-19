@@ -28,11 +28,15 @@ const Header = observer(() => {
                         <div className={classes.element}>Панель администрирования</div>
                     </Link>) : null}
                 <div className={classes.cartContainer}>
-                    Товары: {cartStore.cars.length}
-                    <button className={classes.linkLayout + " " + classes.cart} 
-                    onClick={() => setCartActive(true)}>
+                    <button className={classes.linkLayout + " " + classes.cart}
+                        onClick={() => setCartActive(true)}>
                         Корзина
                     </button>
+                    {cartStore.cars.length !== 0 ?
+                        <div className={classes.cartCount}>
+                            {cartStore.cars.length}
+                        </div>
+                        : null}
                 </div>
             </div>
             {isCartActive ? <ModalCart isCartActive={isCartActive} setCartActive={setCartActive} />
