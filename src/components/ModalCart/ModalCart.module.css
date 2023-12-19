@@ -15,7 +15,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 904px;
+    width: 900px;
     height: 900px;
     color: #4C489D;
     font-weight: 500;
@@ -48,15 +48,6 @@
 	cursor: pointer;
 }
 
-.header {
-    height: 20%;
-    width: 100%;
-
-    display: inline-flex;
-    justify-items: center;
-    align-items: center;
-}
-
 .buttonPanel {
     display: flex;
     flex-direction: row;
@@ -68,4 +59,8 @@
 .items{
     background-color: #a19cdf;
     border-radius: 20px;
+}
+
+.totalPrice{
+    height: 25px;
 }

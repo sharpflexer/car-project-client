@@ -42,6 +42,7 @@ const ModalCart = ({ isCartActive, setCartActive }: IModalCart) => {
                 <button className={classes.close} onClick={closeModal}>
                     Закрыть
                 </button>
+                
             </div>
         </div>
     ) : null;
