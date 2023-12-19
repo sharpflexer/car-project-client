@@ -1,12 +1,11 @@
 
 import {Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import classes from "./App.module.css";
-import Header from './Header/Header';
-import Catalog from './Catalog/Catalog';
-import Admin from './Admin/Admin';
+import Header from './navigation_panel/Header/Header';
+import Catalog from './catalog_page/Catalog/Catalog';
+import Admin from './admin_page/Admin/Admin';
 import Authorize from './auth/Authorize/Authorize';
-import Cart from './Cart/Cart';
-import Scroll from './Scroll/Scroll';
+import Scroll from './share/Scroll/Scroll';
 
 function App() {
   const location = useLocation();

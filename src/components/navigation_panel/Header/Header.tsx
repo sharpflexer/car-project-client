@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import classes from "./Header.module.css";
-import { StoreContext } from "../..";
+import { StoreContext } from "../../..";
 import { useContext, useState } from "react";
-import { Role } from "../../enums/Role";
+import { Role } from "../../../enums/Role";
 import { observer } from "mobx-react";
-import ModalCart from "../ModalCart/ModalCart";
+import ModalCart from "../../shopping_cart/ModalCart/ModalCart";
 
 const Header = observer(() => {
     const { cartStore } = useContext(StoreContext);

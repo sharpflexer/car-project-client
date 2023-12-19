@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { StoreContext } from "../..";
-import ReadonlyCar from "../../types/ReadonlyCar";
+import { StoreContext } from "../../..";
+import ReadonlyCar from "../../../types/ReadonlyCar";
 import classes from "./CartCard.module.css";
 
 function CartCard({ car }: { car: ReadonlyCar }) {
