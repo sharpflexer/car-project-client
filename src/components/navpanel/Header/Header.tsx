@@ -4,7 +4,7 @@ import { StoreContext } from "../../..";
 import { useContext, useState } from "react";
 import { Role } from "../../../enums/Role";
 import { observer } from "mobx-react";
-import ModalCart from "../../shopping_cart/ModalCart/ModalCart";
+import ModalCart from "../../shopcart/ModalCart/ModalCart";
 
 const Header = observer(() => {
     const { cartStore } = useContext(StoreContext);

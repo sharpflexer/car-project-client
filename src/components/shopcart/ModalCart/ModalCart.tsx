@@ -1,7 +1,5 @@
 import { useContext } from "react";
 import { StoreContext } from "../../..";
-import CarCard from "../../catalog_page/CarCard/CarCard";
-import Layout from "../../share/Layout/Layout";
 import classes from "./ModalCart.module.css";
 import ReactDOM from 'react-dom';
 import IModalCart from "../../../interfaces/IModalCart";
