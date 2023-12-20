@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import classes from "./SignUp.module.css"
 import SignUpFields from "../../../types/SignUpFields";
 import { StoreContext } from "../../..";
-import RequestService from "../../../services/RequestService";
+import RequestService from "../../../services/AuthService";
 
 const SignUpSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email!').required('Required!'),

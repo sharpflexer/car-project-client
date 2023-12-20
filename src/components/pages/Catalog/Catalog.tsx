@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import CarCard from "../CarCard/CarCard";
 import Layout from "../../share/Layout/Layout";
 import classes from "./Catalog.module.css";
-import RequestService from "../../../services/RequestService";
+import CarService from "../../../services/CarService";
 import CarHeader from "../CarHeader/CarHeader";
 import ReadonlyCar from "../../../types/ReadonlyCar";
 import { Filter } from "../../../types/Filter";
@@ -17,7 +17,7 @@ function Catalog() {
 
     useEffect(() => {
         const fetchCars = async () => {
-            const result = await RequestService.GetCars();
+            const result = await CarService.GetCars();
             setCars(result);
         };
         fetchCars();

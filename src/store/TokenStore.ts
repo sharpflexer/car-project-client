@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx";
-import RequestService from "../services/RequestService";
+import RequestService from "../services/AuthService";
 import SignInFields from "../types/SignInFields";
 import { Role } from "../enums/Role";
 
