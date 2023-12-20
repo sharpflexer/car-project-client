@@ -1,15 +1,19 @@
-import { useEffect, useState } from "react";
-import CarRow from "../CarRow/CarRow";
-import Layout from "../Layout/Layout";
+import { useContext, useEffect, useState } from "react";
+import CarCard from "../CarCard/CarCard";
+import Layout from "../../share/Layout/Layout";
 import classes from "./Catalog.module.css";
-import RequestService from "../../services/RequestService";
+import RequestService from "../../../services/RequestService";
 import CarHeader from "../CarHeader/CarHeader";
-import ReadonlyCar from "../../types/ReadonlyCar";
-import { Filter } from "../../types/Filter";
+import ReadonlyCar from "../../../types/ReadonlyCar";
+import { Filter } from "../../../types/Filter";
+import { StoreContext } from "../../..";
+import React from "react";
+import Scroll from "../../share/Scroll/Scroll";
 
 function Catalog() {
     const [cars, setCars] = useState<ReadonlyCar[]>([]);
-    const [filterState, setFilterState] = useState<Filter>({field:"id", isDesc: false});
+    const [filterState, setFilterState] = useState<Filter>({ field: "id", isDesc: false });
+
 
     useEffect(() => {
         const fetchCars = async () => {
@@ -18,15 +22,15 @@ function Catalog() {
         };
         fetchCars();
     }, []);
- 
+
     const mapItems = () => cars.map(car => (
-        <CarRow car={car} />
+        <CarCard car={car} />
     ));
 
     function filterBy(property: keyof ReadonlyCar) {
         let isDesc = filterState.isDesc;
 
-        if(filterState.field !== property) {
+        if (filterState.field !== property) {
             setFilterState({ field: property, isDesc: false });
             isDesc = false;
         }
@@ -47,16 +51,18 @@ function Catalog() {
             });
 
         setCars(sortedCars);
-        setFilterState({field: property, isDesc: !isDesc});
+        setFilterState({ field: property, isDesc: !isDesc });
     }
 
     return (
         <Layout>
             <div className={classes.list}>
-                <CarHeader filterBy={filterBy}/>
-                <div className={classes.items}>
-                    {mapItems()}
-                </div>
+                <CarHeader filterBy={filterBy} />
+                <Scroll>
+                    <div className={classes.items}>
+                        {mapItems()}
+                    </div>
+                </Scroll>
             </div>
         </Layout>
     );

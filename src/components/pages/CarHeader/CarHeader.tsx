@@ -1,12 +1,12 @@
 import classes from "./CarHeader.module.css";
-import ReadonlyCar from "../../types/ReadonlyCar";
-import { Filter } from "../../types/Filter";
+import ReadonlyCar from "../../../types/ReadonlyCar";
+import { Filter } from "../../../types/Filter";
 
 interface ICarHeader {
     filterBy: (property: keyof ReadonlyCar) => void;
 }
 
-function CarHeader({ filterBy}: ICarHeader) {
+function CarHeader({ filterBy }: ICarHeader) {
     return (
         <div className={classes.header}>
             <div className={classes.item}>

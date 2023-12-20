@@ -1,0 +1,59 @@
+.card{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 15px;
+    width: 800px;
+    height: 150px;
+    background-color: #C7C5F4;
+    border-radius: 20px;
+    margin: 15px;
+}
+
+.items{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.cartButton{
+    background: #fff;
+	font-size: 25px;
+	padding: 16px 20px;
+	border-radius: 26px;
+	border: 1px solid #D4D3E8;
+	text-transform: uppercase;
+	font-weight: 400;
+	display: flex;
+	align-items: center;
+    justify-content: center;
+	box-shadow: 0px 2px 2px #5C5696;
+    text-decoration: none;
+	cursor: pointer;
+    width: 30px;
+    height: 30px;
+    color: #4C489D;
+
+}
+
+.buttonPanel{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100px;
+}
+
+.trashButton{
+    width: 35px;
+    height: 35px;
+    background-color:#5c569652;
+    padding: 4px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.cardLayout{
+    display:flex;
+    align-items: center;
+}

@@ -1,4 +1,4 @@
-import Layout from "../Layout/Layout";
+import Layout from "../../share/Layout/Layout";
 import classes from "./Admin.module.css";
 
 function Admin() {

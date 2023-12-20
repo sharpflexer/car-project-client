@@ -1,11 +1,15 @@
 .list{
     display: flex;
     flex-direction: column;
-    height:620px;
+    height: 700px;
+    width: 830px;
     justify-content: space-around;
+    align-items: center;
 }
 
 .items{
+    width: 830px;
     background-color: #a19cdf;
     border-radius: 20px;
+
 }
