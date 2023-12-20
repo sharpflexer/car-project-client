@@ -11,8 +11,9 @@ export default class UserStore {
         makeAutoObservable(this);
     }
 
-    async readUsers(): Promise<User[]> {
-        return await UserService.GetUsers();
+    async readUsers(): Promise<void> {
+        this.users = await UserService.GetUsers();
+        console.log(this.users);
     }
 
     async updateUser(user: User): Promise<void> {

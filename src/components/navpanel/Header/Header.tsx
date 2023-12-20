@@ -20,11 +20,11 @@ const Header = observer(() => {
         <div className={classes.layout}>
             <label className={classes.title}>Car Shop Online</label>
             <div className={classes.linkContainer}>
-                <Link className={classes.linkLayout + " " + classes.catalog} to="../catalog">
+                <Link className={classes.linkLayout + " " + classes.catalog} to="/catalog">
                     <div className={classes.element}>Каталог</div>
                 </Link>
                 {hasAccess(Role.Admin, Role.Manager) ? (
-                    <Link className={classes.linkLayout + " " + classes.admin} to="../admin">
+                    <Link className={classes.linkLayout + " " + classes.admin} to="/admin">
                         <div className={classes.element}>Панель администрирования</div>
                     </Link>) : null}
                 <div className={classes.cartContainer}>
