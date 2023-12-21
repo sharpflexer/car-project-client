@@ -1,11 +1,12 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable, observable } from "mobx";
 import RequestService from "../services/AuthService";
 import SignInFields from "../types/SignInFields";
 import { Role } from "../enums/Role";
+import { persist } from "mobx-persist";
 
 export default class TokenStore{
-     isAuth = false;
-     role: Role = Role.None;
+     @persist isAuth = false;
+     @persist("object") @observable role: Role = Role.None;
 
      constructor(){
           makeAutoObservable(this);

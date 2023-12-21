@@ -6,6 +6,7 @@ import { StoreContext } from "../../..";
 import UserRow from "../UserRow/UserRow";
 import Scroll from "../../share/Scroll/Scroll";
 import { observer } from "mobx-react";
+import UserHeader from "../UserHeader/UserHeader";
 
 const Admin = observer(() => {
     const { userStore } = useContext(StoreContext);
@@ -28,7 +29,10 @@ const Admin = observer(() => {
     return (
         <Layout>
             <Scroll>
-                {mapItems()}
+                <div className={classes.content}>
+                    <UserHeader/>
+                    {mapItems()}
+                </div>
             </Scroll>
         </Layout>
     );
