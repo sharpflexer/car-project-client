@@ -5,7 +5,7 @@
 
 .items{
     display: grid;
-    grid-template-columns: 50px 200px 100px 150px 150px;
+    grid-template-columns: 50px 200px 100px 150px 150px 10px 100px 10px 100px;
 }
 
 .cell{

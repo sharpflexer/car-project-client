@@ -32,9 +32,11 @@ class UserService {
     /***
      * Обновляет пользователя
      */
-    public async UpdateUser(user: User): Promise<boolean> {
-        return (await this.instance.put<User>("/api/user/update", { user }))
-            .status === 200;
+    public async UpdateUser(userViewModel: User): Promise<boolean> {
+        return (await this.instance.put<User>("/api/user/update", {
+            headers: "Content-Type=application/json",
+            data: userViewModel
+        })).status === 200;
     }
 
     /***
