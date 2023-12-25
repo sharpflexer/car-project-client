@@ -1,18 +1,18 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable, observable, runInAction } from "mobx";
 import { User } from "../types/User";
 import UserService from "../services/UserService";
 import { Car } from "../types/Car";
 
 
 export default class UserStore {
-    users: User[] = [];
+    @observable users = observable.array<User>();
 
     constructor() {
         makeAutoObservable(this);
     }
 
     async readUsers(): Promise<void> {
-        this.users = await UserService.GetUsers();
+        this.users.replace(await UserService.GetUsers());
         console.log(this.users);
     }
 
@@ -28,7 +28,7 @@ export default class UserStore {
     async deleteUser(user: User) {
         if (await UserService.DeleteUser(user)) {
             const index = this.users.findIndex(u => u.id === user.id);
-            this.users.splice(index, 1);
+            runInAction(() => this.users.splice(index, 1));
         }
         else {
             alert("Не удалось удалить пользователя.");

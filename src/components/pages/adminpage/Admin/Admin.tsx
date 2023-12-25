@@ -1,22 +1,24 @@
-import { useContext, useEffect, useState } from "react";
-import UserService from "../../../services/UserService";
-import Layout from "../../share/Layout/Layout";
-import classes from "./Admin.module.css";
-import { StoreContext } from "../../..";
-import UserRow from "../UserRow/UserRow";
-import Scroll from "../../share/Scroll/Scroll";
+import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { Table } from "antd";
 import { observer } from "mobx-react";
-import UserHeader from "../UserHeader/UserHeader";
-import { Input, Modal, Table } from "antd";
-import Role from "../../../types/Role";
-import { User } from "../../../types/User";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import UserModal from "../UserModal/UserModal";
+import { useContext, useEffect, useState } from "react";
+import { StoreContext } from "../../../..";
+import { User } from "../../../../types/User";
+import UserDeleteModal from "../UserDeleteModal/UserDeleteModal";
+import UserEditModal from "../UserEditModal/UserEditModal";
+import UserRow from "../UserRow/UserRow";
+import classes from "./Admin.module.css";
+import Role from "../../../../types/Role";
+import Layout from "../../../share/Layout/Layout";
 
 const Admin = observer(() => {
     const { userStore } = useContext(StoreContext);
     const { users } = userStore;
 
+    const [isEditVisible, setEditVisible] = useState(false);
+    const [isDeleteVisible, setDeleteVisible] = useState(false);
+    const [user, setUser] = useState(users[0]);
+    
     useEffect(() => {
         const fetchUsers = async () => {
             await userStore.readUsers();
@@ -24,23 +26,14 @@ const Admin = observer(() => {
         fetchUsers();
     }, []);
 
-    const mapItems = () => users.map(user => (
-        <UserRow
-            key={user.id}
-            user={user} />
-    ));
-    const [visible, setVisible] = useState(false);
-    const [edit, setEdit] = useState(users[0]);
-    const [remove, setRemove] = useState(users[0]);
-
     const Edit = (user: User) => {
-        setEdit(user);
-        setVisible(true);
+        setUser(user);
+        setEditVisible(true);
     };
 
     const Delete = (user: User) => {
-        setRemove(user);
-        setVisible(true);
+        setUser(user);
+        setDeleteVisible(true);
     };
 
     const columns = [
@@ -77,10 +70,11 @@ const Admin = observer(() => {
 
                 return (
                     <>
-                        <div className="flex">
+                        <div className={classes.actions}>
                             <EditOutlined
                                 style={{ color: "black" }}
                                 onClick={() => Edit(user)}
+                                
                             />
                             <DeleteOutlined
                                 style={{ color: "red" }}
@@ -97,9 +91,10 @@ const Admin = observer(() => {
     return (
         <Layout>
             <div className={classes.content}>
-                <Table dataSource={users} columns={columns} />;
+                <Table dataSource={users} columns={columns} pagination={false} scroll={{y: 800}}  />
             </div>
-           <UserModal visible={visible} setVisible={setVisible} edit={edit}/>
+           <UserEditModal visible={isEditVisible} setVisible={setEditVisible} user={user} setUser={setUser}/>
+           <UserDeleteModal visible={isDeleteVisible} setVisible={setDeleteVisible} user={user}/>
         </Layout>
     );
 });

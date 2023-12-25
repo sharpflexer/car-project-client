@@ -33,17 +33,16 @@ class UserService {
      * Обновляет пользователя
      */
     public async UpdateUser(userViewModel: User): Promise<boolean> {
-        return (await this.instance.put<User>("/api/user/update", {
-            headers: "Content-Type=application/json",
-            data: userViewModel
-        })).status === 200;
+        return (await this.instance.put<User>("/api/user/update", 
+            userViewModel
+        )).status === 200;
     }
 
     /***
      * Удаляет пользователя
      */
     public async DeleteUser(user: User): Promise<boolean> {
-        return (await this.instance.delete<User>("/api/user/delete", { data: { user } }))
+        return (await this.instance.delete<User>("/api/user/delete", {data: user}))
             .status === 200;
     }
 }

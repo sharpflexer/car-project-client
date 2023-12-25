@@ -7,7 +7,7 @@ import SignUpFields from "../../../types/SignUpFields";
 import { StoreContext } from "../../..";
 import RequestService from "../../../services/AuthService";
 
-const SignUpSchema = Yup.object().shape({
+export const SignUpSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email!').required('Required!'),
   login: Yup.string()
     .min(4, 'Too Short! Minimum 4 symbols.')

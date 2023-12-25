@@ -1,5 +1,5 @@
 import classes from "./UserRow.module.css";
-import { User } from "../../../types/User";
+import { User } from "../../../../types/User";
 
 function UserRow({ user }: { user: User }) {
     return (
