@@ -18,7 +18,7 @@ const Admin = observer(() => {
     const [isEditVisible, setEditVisible] = useState(false);
     const [isDeleteVisible, setDeleteVisible] = useState(false);
     const [user, setUser] = useState(users[0]);
-    
+
     useEffect(() => {
         const fetchUsers = async () => {
             await userStore.readUsers();

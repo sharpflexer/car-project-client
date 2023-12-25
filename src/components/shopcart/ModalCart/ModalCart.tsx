@@ -12,9 +12,10 @@ const ModalCart = ({ isCartActive, setCartActive }: IModalCart) => {
     const { cars } = cartStore;
 
     const mapItems = () => uniqueSortedItems().map(car => (
-        <CartCard car={car} />
+        <CartCard key={car.id} car={car} />
     ));
 
+    console.log("render");
     const uniqueSortedItems = () => cars.filter((elem, index, self) => {
         return self.indexOf(elem) === index && self.includes(elem);
     }).sort((a, b) => a.id - b.id);
@@ -39,8 +40,7 @@ const ModalCart = ({ isCartActive, setCartActive }: IModalCart) => {
                 </Scroll>
                 <button className={classes.close} onClick={closeModal}>
                     Закрыть
-                </button>
-                
+                </button> 
             </div>
         </div>
     ) : null;

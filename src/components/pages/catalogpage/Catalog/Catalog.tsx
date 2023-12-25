@@ -24,7 +24,7 @@ function Catalog() {
     }, []);
 
     const mapItems = () => cars.map(car => (
-        <CarCard car={car} />
+        <CarCard key={car.id} car={car} />
     ));
 
     function filterBy(property: keyof ReadonlyCar) {

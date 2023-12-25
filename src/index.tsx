@@ -33,7 +33,6 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <React.StrictMode>
     <BrowserRouter>
       <StoreContext.Provider value={{
         tokenStore,
@@ -44,5 +43,4 @@ root.render(
         <App />
       </StoreContext.Provider>
     </BrowserRouter>
-  </React.StrictMode>
 );

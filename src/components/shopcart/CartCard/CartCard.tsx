@@ -26,7 +26,7 @@ function CartCard({ car }: { car: ReadonlyCar }) {
                             -
                         </button>
                         <div className={classes.count}>
-                            {cartStore.getCount(car)}
+                            {cartStore.getCountOf(car)}
                         </div>
                         <button className={classes.cartButton}
                             onClick={() => cartStore.addToCart(car)}>

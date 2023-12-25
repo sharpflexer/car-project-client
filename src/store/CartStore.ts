@@ -17,7 +17,7 @@ export default class CartStore{
         this.cars.splice(index, 1);
     }
 
-    getCount(car: ReadonlyCar): number{
+    getCountOf(car: ReadonlyCar): number{
         return this.cars.filter(c => c.id === car.id).length;
     }
 
