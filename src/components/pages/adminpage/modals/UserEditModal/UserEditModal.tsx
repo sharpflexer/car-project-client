@@ -1,7 +1,7 @@
 import { Input, Modal, Typography } from "antd";
 import { useContext, useState } from "react";
-import { User } from "../../../../types/User";
-import { StoreContext } from "../../../..";
+import { User } from "../../../../../types/User";
+import { StoreContext } from "../../../../..";
 import { Formik } from "formik";
 
 interface IUserModal {

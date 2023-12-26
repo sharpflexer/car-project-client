@@ -1,7 +1,6 @@
-import { action, makeAutoObservable, observable, runInAction } from "mobx";
+import { makeAutoObservable } from "mobx";
 import { User } from "../types/User";
 import UserService from "../services/UserService";
-import { Car } from "../types/Car";
 
 
 export default class UserStore {
@@ -18,7 +17,10 @@ export default class UserStore {
 
     async updateUser(user: User): Promise<void> {
         if (await UserService.UpdateUser(user)) {
-            this.users.forEach((value) => value.id === user.id ? user : value);
+            const index = this.users.findIndex(u => u.id === user.id);
+            const updatedUsers = this.users.filter((value) => value.id !== user.id);
+            updatedUsers.splice(index, 0, user);
+            this.users = updatedUsers;
         }
         else {
             alert("Не удалось обновить пользователя.");
@@ -27,8 +29,8 @@ export default class UserStore {
     
     async deleteUser(user: User) {
         if (await UserService.DeleteUser(user)) {
-            const index = this.users.findIndex(u => u.id === user.id);
-            this.users.splice(index, 1);
+            const filteredUsers = this.users.filter((value) => value.id !== user.id);
+            this.users = filteredUsers;
         }
         else {
             alert("Не удалось удалить пользователя.");

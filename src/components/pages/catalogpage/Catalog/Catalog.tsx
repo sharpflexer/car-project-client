@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import CarCard from "../CarCard/CarCard";
 import Layout from "../../../share/Layout/Layout";
 import classes from "./Catalog.module.css";
@@ -6,8 +6,6 @@ import CarService from "../../../../services/CarService";
 import CarHeader from "../CarHeader/CarHeader";
 import ReadonlyCar from "../../../../types/ReadonlyCar";
 import { Filter } from "../../../../types/Filter";
-import { StoreContext } from "../../../..";
-import React from "react";
 import Scroll from "../../../share/Scroll/Scroll";
 
 function Catalog() {

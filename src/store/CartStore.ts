@@ -1,4 +1,4 @@
-import { action, makeAutoObservable, observable, observe } from "mobx";
+import { makeAutoObservable } from "mobx";
 import ReadonlyCar from "../types/ReadonlyCar";
 
 export default class CartStore{
@@ -13,8 +13,8 @@ export default class CartStore{
     }
 
     removeFromCart(car: ReadonlyCar): void{
-        const index = this.cars.findIndex(c => c.id === car.id);
-        this.cars.splice(index, 1);
+                    const index = this.cars.findIndex(c => c.id === car.id);
+                this.cars.splice(index, 1);
     }
 
     getCountOf(car: ReadonlyCar): number{

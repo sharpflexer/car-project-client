@@ -19,8 +19,9 @@ export default class CarStore {
         }
     }
 
-    async readCars(): Promise<Car[]> {
-        return await CarService.GetFullCars();
+    async readCars(): Promise<void> {
+        this.cars =  await CarService.GetFullCars();
+        console.log(this.cars);
     }
 
     async updateCar(car: Car): Promise<void> {

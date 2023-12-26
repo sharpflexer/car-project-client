@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { StoreContext } from "../../../..";
-import { User } from "../../../../types/User";
+import { StoreContext } from "../../../../..";
+import { User } from "../../../../../types/User";
 import { Modal } from "antd";
 
 interface IUserDeleteModal {
