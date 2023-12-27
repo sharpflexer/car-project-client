@@ -2,6 +2,8 @@ import axios, { AxiosInstance, AxiosResponse } from "axios";
 import setupInterceptorsTo from "../http/Interceptors";
 import { Car } from "../types/Car";
 import ReadonlyCar from "../types/ReadonlyCar";
+import { CarProperty } from "../types/CarProperty";
+import CarProperties from "../types/CarProperties";
 
 
 class CarService {
@@ -21,7 +23,7 @@ class CarService {
     }
 
     /***
-     * Получает список автомобилей для каталога
+     * Получает список автомобилей для каталога.
      */
     public async GetCars(): Promise<ReadonlyCar[]> {
         const result = (await this.instance.get<Car[]>("/api/car/read")).data;
@@ -30,14 +32,14 @@ class CarService {
     }
 
     /***
-     * Получает список автомобилей для админ-панели
+     * Получает список автомобилей для админ-панели.
      */
     public async GetFullCars(): Promise<Car[]> {
         return (await this.instance.get<Car[]>("/api/car/read")).data;
     }
 
     /***
-     * Создает автомобиль
+     * Создает автомобиль.
      */
     public async CreateCar(car: Car): Promise<boolean> {
         return (await this.instance.post<Car>("/api/car/create", { car }))
@@ -45,7 +47,7 @@ class CarService {
     }
 
     /***
-     * Обновляет автомобиль
+     * Обновляет автомобиль.
      */
     public async UpdateCar(car: Car): Promise<boolean> {
         return (await this.instance.put<Car>("/api/car/update", { car }))
@@ -53,11 +55,18 @@ class CarService {
     }
 
     /***
-     * Удаляет автомобиль
+     * Удаляет автомобиль.
      */
     public async DeleteCar(car: Car): Promise<boolean> {
         return (await this.instance.delete<Car>("/api/car/delete", { data: { car } }))
             .status === 200;
+    }
+
+    /***
+     * Получает список свойств автомобилей.
+     */
+    public async ReadProperties(): Promise<CarProperties> {
+        return (await this.instance.get<CarProperties>("/api/car/read_properties")).data;
     }
 }
 

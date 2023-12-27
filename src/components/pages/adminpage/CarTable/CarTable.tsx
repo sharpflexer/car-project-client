@@ -26,8 +26,7 @@ const CarTable = observer(() => {
         fetchCars();
     }, []);
 
-    const Create = (car: Car) => {
-        setCar(car);
+    const Create = () => {
         setCreateVisible(true);
     };
 
@@ -51,11 +50,11 @@ const CarTable = observer(() => {
                     locale={{ emptyText: "Нет данных" }} />
                 <PlusSquareOutlined
                     style={{ color: "green", fontSize: '25px'}}
-                    onClick={() => Create(car)}
+                    onClick={() => Create()}
 
                 />
             </div>
-            <CarCreateModal visible={isCreateVisible} setVisible={setCreateVisible} car={car} setCar={setCar} />
+            <CarCreateModal visible={isCreateVisible} setVisible={setCreateVisible} />
             <CarEditModal visible={isEditVisible} setVisible={setEditVisible} car={car} setCar={setCar} />
             <CarDeleteModal visible={isDeleteVisible} setVisible={setDeleteVisible} car={car} />
         </>
