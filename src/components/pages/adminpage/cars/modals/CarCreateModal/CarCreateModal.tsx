@@ -73,12 +73,12 @@ function CarCreateModal({setVisible, properties}: ICarCreateModal) {
                 style={{ width: 200 }}
                 disabled={nestedModels.length === 0}
                 onChange={modelsChange}
-                options={nestedModels ? nestedModels.map(model => {
+                options={nestedModels.map(model => {
                     return {
                         label: model.name,
                         value: model.id
                     }
-                }) : []}
+                })}
             />
             <Typography.Title level={5}>Цвет</Typography.Title>
             <Select
@@ -88,12 +88,12 @@ function CarCreateModal({setVisible, properties}: ICarCreateModal) {
                 style={{ width: 200 }}
                 disabled={nestedColors?.length === 0}
                 onChange={colorsChange}
-                options={nestedColors ? nestedColors.map(color => {
+                options={nestedColors.map(color => {
                     return {
                         label: color.name,
                         value: color.id
                     }
-                }) : []}
+                })}
             />
             <Typography.Title level={5}>Цена</Typography.Title>
             <Input
