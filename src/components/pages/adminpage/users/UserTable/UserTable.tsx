@@ -1,6 +1,4 @@
 import { Table } from "antd";
-import UserDeleteModal from "../../modals/UserDeleteModal/UserDeleteModal";
-import UserEditModal from "../../modals/UserEditModal/UserEditModal";
 import classes from "./UserTable.module.css";
 import { useContext, useEffect, useState } from "react";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
@@ -9,6 +7,8 @@ import { User } from "../../../../../types/User";
 import { Role } from "../../../../../types/Role";
 import getColumns from "./UserColumns";
 import { observer } from "mobx-react";
+import UserDeleteModal from "../modals/UserDeleteModal/UserDeleteModal";
+import UserEditModal from "../modals/UserEditModal/UserEditModal";
 
 const UserTable = observer(() => {
     const { userStore } = useContext(StoreContext);

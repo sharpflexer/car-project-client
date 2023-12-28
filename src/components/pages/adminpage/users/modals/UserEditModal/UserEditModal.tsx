@@ -1,8 +1,8 @@
 import { Input, Modal, Typography } from "antd";
 import { useContext, useState } from "react";
-import { User } from "../../../../../types/User";
-import { StoreContext } from "../../../../..";
 import { Formik } from "formik";
+import { StoreContext } from "../../../../../..";
+import { User } from "../../../../../../types/User";
 
 interface IUserModal {
     visible: boolean,
