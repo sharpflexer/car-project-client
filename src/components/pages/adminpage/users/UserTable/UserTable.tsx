@@ -16,7 +16,7 @@ const UserTable = observer(() => {
 
     const [isEditVisible, setEditVisible] = useState(false);
     const [isDeleteVisible, setDeleteVisible] = useState(false);
-    const [user, setUser] = useState(users[0]);
+    const [user, setUser] = useState({} as User);
 
     const [isLoading, setLoading] = useState(true);
 
