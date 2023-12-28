@@ -53,7 +53,9 @@ function CarCreateModal({setVisible, properties}: ICarCreateModal) {
         >
             <Typography.Title level={5}>Марка</Typography.Title>
             <Select
-                defaultValue={properties.brands[0].id}
+                defaultValue={properties.brands.length > 0 ?
+                    properties.brands[0].id
+                    : null}
                 style={{ width: 200 }}
                 onChange={brandsChange}
                 options={properties.brands.map(brand => {
@@ -65,7 +67,9 @@ function CarCreateModal({setVisible, properties}: ICarCreateModal) {
             />
             <Typography.Title level={5}>Модель</Typography.Title>
             <Select
-                defaultValue={nestedModels[0].id}
+                defaultValue={nestedModels.length > 0 ?
+                    nestedModels[0].id
+                    : null}
                 style={{ width: 200 }}
                 disabled={nestedModels.length === 0}
                 onChange={modelsChange}
@@ -78,7 +82,9 @@ function CarCreateModal({setVisible, properties}: ICarCreateModal) {
             />
             <Typography.Title level={5}>Цвет</Typography.Title>
             <Select
-                defaultValue={nestedColors[0].id}
+                defaultValue={nestedColors?.length > 0 ?
+                    nestedColors[0].id
+                    : null}
                 style={{ width: 200 }}
                 disabled={nestedColors?.length === 0}
                 onChange={colorsChange}
