@@ -10,72 +10,44 @@ import Color from "../../../../../../types/Color";
 interface ICarEditModal {
     setVisible: (value: boolean) => void,
     car: Car,
-    setCar: (value: Car) => void;
+    properties: CarProperties
 }
 
-function CarEditModal({ setVisible, car, setCar }: ICarEditModal) {
+function CarEditModal({ setVisible, car, properties }: ICarEditModal) {
     const { carStore } = useContext(StoreContext);
-    const [properties, setProperties] = useState<CarProperties>({ brands: [], models: [], colors: [] })
     const [nestedModels, setNestedModels] = useState<Model[]>([]);
     const [nestedColors, setNestedColors] = useState<Color[]>([]);
+    const [editCar, setEditCar] = useState<Car>(car);
 
     useEffect(() => {
-        const fetchProperties = async () => {
-            setProperties(await CarService.ReadProperties());
-            return properties;
-        };
-        fetchProperties().then(() => {
-            const models = properties.brands
-                .find(b => b.id === car.brand.id)?.models;
-            setNestedModels(models!);
-            const colors = properties.models
-                .find(m => m.id === car.model.id)?.colors;
-            setNestedColors(colors!);
-        });
+        const models = properties.brands
+            .find(b => b.id === editCar.brand.id)?.models;
+        setNestedModels(models!);
+
+        const colors = properties.models
+            .find(m => m.id === editCar.model.id)?.colors;
+
+        setNestedColors(colors!);
     }, []);
 
-    function brandsChange(value: number, option: { label: string; value: number; } | { label: string; value: number; }[]): void {
-        setCar({ ...car!, brand: properties.brands.find(b => b.id === value)! });
-        const models = properties.brands
-            .find(b => b.id === value)?.models;
-        setNestedModels(models!);
+    function brandsChange(value: number): void {
+        const selectedBrand = properties.brands.find(b => b.id === value)!;
+
+        setEditCar({ ...editCar, brand: selectedBrand });
+        setNestedModels(selectedBrand.models);
     }
 
-    function modelsChange(value: number, option: { label: string; value: number; } | { label: string; value: number; }[]): void {
-        setCar({ ...car!, model: properties.models.find(m => m.id === value)! });
-        const colors = properties.models
-            .find(m => m.id === value)?.colors;
-        setNestedColors(colors!);
+    function modelsChange(value: number): void {
+        const selectedModel = properties.models.find(m => m.id === value)!;
+
+        setEditCar({ ...editCar, model: selectedModel });
+        setNestedColors(selectedModel.colors);
     }
 
-    function colorsChange(value: number, option: { label: string; value: number; } | { label: string; value: number; }[]): void {
-        setCar({ ...car!, color: properties.colors.find(c => c.id === value)! });
-    }
+    function colorsChange(value: number): void {
+        const selectedColor = properties.colors.find(c => c.id === value);
 
-    function getInitialModels(): { label: string; value: number; }[] | undefined {
-        return properties.brands
-            .find(b => b.id === car.brand.id)!
-            .models
-            .map(model => {
-                return {
-                    label: model.name,
-                    value: model.id
-                }
-            }
-            );
-    }
-
-    function getInitialColors(): { label: string; value: number; }[] | undefined {
-        return properties.models
-            .find(b => b.id === car.model.id)!
-            .colors
-            .map(color => {
-                return {
-                    label: color.name,
-                    value: color.id
-                }
-            }
-            );
+        setEditCar({ ...editCar, color: selectedColor! });
     }
 
     return (
@@ -86,13 +58,13 @@ function CarEditModal({ setVisible, car, setCar }: ICarEditModal) {
             cancelText='Отмена'
             onCancel={() => setVisible(false)}
             onOk={async () => {
-                await carStore.updateCar(car);
+                await carStore.updateCar(editCar);
                 setVisible(false);
             }}
         >
             <Typography.Title level={5}>Марка</Typography.Title>
             <Select
-                defaultValue={car.brand.id}
+                defaultValue={editCar.brand.id}
                 style={{ width: 200 }}
                 onChange={brandsChange}
                 options={properties.brands ? properties.brands.map(brand => {
@@ -104,7 +76,7 @@ function CarEditModal({ setVisible, car, setCar }: ICarEditModal) {
             />
             <Typography.Title level={5}>Модель</Typography.Title>
             <Select
-                defaultValue={car.model.id}
+                defaultValue={editCar.model.id}
                 style={{ width: 200 }}
 
                 onChange={modelsChange}
@@ -113,11 +85,11 @@ function CarEditModal({ setVisible, car, setCar }: ICarEditModal) {
                         label: model.name,
                         value: model.id
                     }
-                }) : getInitialModels()}
+                }) : []}
             />
             <Typography.Title level={5}>Цвет</Typography.Title>
             <Select
-                defaultValue={car.color.id}
+                defaultValue={editCar.color.id}
                 style={{ width: 200 }}
                 onChange={colorsChange}
                 options={nestedColors ? nestedColors.map(color => {
@@ -125,13 +97,13 @@ function CarEditModal({ setVisible, car, setCar }: ICarEditModal) {
                         label: color.name,
                         value: color.id
                     }
-                }) : getInitialColors()}
+                }) : []}
             />
             <Typography.Title level={5}>Цена</Typography.Title>
             <Input
-                defaultValue={car.price}
+                defaultValue={editCar.price}
                 onChange={e => {
-                    setCar({ ...car!, price: Number(e.target.value!) });
+                    setEditCar({ ...editCar!, price: Number(e.target.value!) });
                 }}
             />
         </Modal >

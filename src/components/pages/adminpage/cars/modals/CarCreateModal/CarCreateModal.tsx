@@ -10,47 +10,38 @@ import Color from "../../../../../../types/Color";
 
 interface ICarCreateModal {
     setVisible: (value: boolean) => void,
+    properties: CarProperties
 }
 
-function CarCreateModal({ setVisible }: ICarCreateModal) {
+function CarCreateModal({setVisible, properties}: ICarCreateModal) {
     const { carStore } = useContext(StoreContext);
-    const [properties, setProperties] = useState<CarProperties>({ brands: [], models: [], colors: [] })
     const [car, setCar] = useState<Car>({} as Car);
     const [nestedModels, setNestedModels] = useState<Model[]>([]);
     const [nestedColors, setNestedColors] = useState<Color[]>([]);
 
-    useEffect(() => {
-        const fetchProperties = async () => {
-            setProperties(await CarService.ReadProperties());
-            return properties;
-        };
-        fetchProperties()
+    function brandsChange(id: number): void {
+        const selectedBrand = properties.brands.find(b => b.id === id)!;
 
-
-    }, []);
-
-    function brandsChange(value: number, option: { label: string; value: number; } | { label: string; value: number; }[]): void {
-        setCar({ ...car!, brand: properties.brands.find(b => b.id === value)! });
-        
-        const models = properties.brands
-            .find(b => b.id === value)?.models;
-        setNestedModels(models!);
+        setCar({ ...car, brand: selectedBrand });
+        setNestedModels(selectedBrand.models);
     }
 
-    function modelsChange(value: number, option: { label: string; value: number; } | { label: string; value: number; }[]): void {
-        setCar({ ...car!, model: properties.models.find(m => m.id === value)! });
-        const colors = properties.models
-            .find(m => m.id === value)?.colors;
-        setNestedColors(colors!);
+    function modelsChange(id: number): void {
+        const selectedModel = properties.models.find(m => m.id === id)!;
+
+        setCar({ ...car, model: selectedModel });;
+        setNestedColors(selectedModel.colors);
     }
 
-    function colorsChange(value: number, option: { label: string; value: number; } | { label: string; value: number; }[]): void {
-        setCar({ ...car!, color: properties.colors.find(c => c.id === value)! });
+    function colorsChange(id: number): void {
+        const selectedColor = properties.colors.find(c => c.id === id)!;
+
+        setCar({ ...car, color: selectedColor });
     }
 
     return (
         <Modal
-            title="Создание пользователя"
+            title="Создание автомобиля"
             open={true}
             okText="Добавить"
             cancelText='Отмена'
@@ -67,12 +58,12 @@ function CarCreateModal({ setVisible }: ICarCreateModal) {
                     : null}
                 style={{ width: 200 }}
                 onChange={brandsChange}
-                options={properties.brands ? properties.brands.map(brand => {
+                options={properties.brands.map(brand => {
                     return {
                         label: brand.name,
                         value: brand.id
                     }
-                }) : []}
+                })}
             />
             <Typography.Title level={5}>Модель</Typography.Title>
             <Select

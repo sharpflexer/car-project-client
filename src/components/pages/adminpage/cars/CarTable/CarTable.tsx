@@ -9,6 +9,8 @@ import CarEditModal from "../modals/CarEditModal/CarEditModal";
 import CarDeleteModal from "../modals/CarDeleteModal/CarDeleteModal";
 import CarCreateModal from "../modals/CarCreateModal/CarCreateModal";
 import { observer } from "mobx-react";
+import CarProperties from "../../../../../types/CarProperties";
+import CarService from "../../../../../services/CarService";
 
 const CarTable = observer(() => {
     const { carStore } = useContext(StoreContext);
@@ -17,13 +19,29 @@ const CarTable = observer(() => {
     const [isCreateVisible, setCreateVisible] = useState(false);
     const [isEditVisible, setEditVisible] = useState(false);
     const [isDeleteVisible, setDeleteVisible] = useState(false);
-    const [car, setCar] = useState(cars[0]);
+    const [car, setCar] = useState<Car>({} as Car);
+
+    const [properties, setProperties] = useState<CarProperties>(
+        {
+            brands: [],
+            models: [],
+            colors: []
+        }
+    )
+
+    const [isLoading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchCars = async () => {
-            await carStore.readCars();
+            await carStore.readFullCars();
         };
-        fetchCars();
+        const fetchProperties = async () => {
+            setProperties(await CarService.ReadProperties());
+        };
+
+        fetchCars()
+            .then(() => fetchProperties())
+            .then(() => setLoading(false));
     }, []);
 
     const Create = () => {
@@ -47,6 +65,7 @@ const CarTable = observer(() => {
                     columns={getColumns(Edit, Delete)}
                     pagination={false}
                     scroll={{ y: 700 }}
+                    loading={isLoading}
                     locale={{ emptyText: "Нет данных" }} />
                 <PlusSquareOutlined
                     style={{ color: "green", fontSize: '25px' }}
@@ -55,11 +74,14 @@ const CarTable = observer(() => {
                 />
             </div>
             {isCreateVisible ?
-                <CarCreateModal setVisible={setCreateVisible} />
+                <CarCreateModal setVisible={setCreateVisible}
+                    properties={properties} />
                 : null}
 
             {isEditVisible ?
-                <CarEditModal setVisible={setEditVisible} car={car} setCar={setCar} />
+                <CarEditModal setVisible={setEditVisible}
+                    car={car}
+                    properties={properties} />
                 : null}
 
             {isDeleteVisible ?

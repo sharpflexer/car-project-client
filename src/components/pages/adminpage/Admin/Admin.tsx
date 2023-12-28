@@ -21,7 +21,6 @@ const Admin = observer(() => {
     return (
         <Layout>
             <Tabs defaultActiveKey="cars" items={tabs} />
-            {/* <CarTable/> */}
         </Layout>
     );
 });

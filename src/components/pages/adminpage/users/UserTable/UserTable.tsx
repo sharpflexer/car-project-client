@@ -18,11 +18,14 @@ const UserTable = observer(() => {
     const [isDeleteVisible, setDeleteVisible] = useState(false);
     const [user, setUser] = useState(users[0]);
 
+    const [isLoading, setLoading] = useState(true);
+
     useEffect(() => {
         const fetchUsers = async () => {
             await userStore.readUsers();
         };
-        fetchUsers();
+        fetchUsers()
+            .then(() => setLoading(false));
     }, []);
 
     const Edit = (user: User) => {
@@ -38,11 +41,12 @@ const UserTable = observer(() => {
     return (
         <>
             <div className={classes.content}>
-                <Table dataSource={users} 
-                columns={getColumns(Edit, Delete)} 
-                pagination={false} 
-                scroll={{ y: 700 }} 
-                locale={{emptyText: "Нет данных"}}/>
+                <Table dataSource={users}
+                    columns={getColumns(Edit, Delete)}
+                    pagination={false}
+                    scroll={{ y: 700 }}
+                    loading={isLoading}
+                    locale={{ emptyText: "Нет данных" }} />
             </div>
             <UserEditModal visible={isEditVisible} setVisible={setEditVisible} user={user} setUser={setUser} />
             <UserDeleteModal visible={isDeleteVisible} setVisible={setDeleteVisible} user={user} />

@@ -19,7 +19,7 @@ export default class CarStore {
         }
     }
 
-    async readCars(): Promise<void> {
+    async readFullCars(): Promise<void> {
         this.cars =  await CarService.GetFullCars();
         console.log(this.cars);
     }

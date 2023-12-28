@@ -4,7 +4,8 @@ import { Car } from "../../../../../types/Car";
 import { CarProperty } from "../../../../../types/CarProperty";
 
 
-function getColumns(edit: (value: Car) => void,
+function getColumns(
+    edit: (value: Car) => void,
     remove: (value: Car) => void) {
 
     const columns = [
