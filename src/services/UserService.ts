@@ -2,6 +2,7 @@ import axios, { AxiosInstance } from "axios";
 import setupInterceptorsTo from "../http/Interceptors";
 import { Car } from "../types/Car";
 import { User } from "../types/User";
+import { axiosConfig } from "./instance";
 
 class UserService {
     CreateCar(car: Car) {
@@ -10,10 +11,7 @@ class UserService {
     /***
      *  Экземпляр axios с необходимиыми настройками.
      */
-    instance: AxiosInstance = axios.create({
-        baseURL: 'https://localhost:7191',
-        withCredentials: true, // Разрешить передачу куки
-    });
+    instance: AxiosInstance = axios.create(axiosConfig);
 
     /***
      *  Конструктор, устанавливающий интерцепторы.

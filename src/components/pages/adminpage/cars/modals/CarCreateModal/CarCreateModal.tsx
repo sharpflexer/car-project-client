@@ -31,6 +31,7 @@ function CarCreateModal({ setVisible }: ICarCreateModal) {
 
     function brandsChange(value: number, option: { label: string; value: number; } | { label: string; value: number; }[]): void {
         setCar({ ...car!, brand: properties.brands.find(b => b.id === value)! });
+        
         const models = properties.brands
             .find(b => b.id === value)?.models;
         setNestedModels(models!);
@@ -79,6 +80,7 @@ function CarCreateModal({ setVisible }: ICarCreateModal) {
                     nestedModels[0].id
                     : null}
                 style={{ width: 200 }}
+                disabled={nestedModels.length === 0}
                 onChange={modelsChange}
                 options={nestedModels ? nestedModels.map(model => {
                     return {
@@ -93,6 +95,7 @@ function CarCreateModal({ setVisible }: ICarCreateModal) {
                     nestedColors[0].id
                     : null}
                 style={{ width: 200 }}
+                disabled={nestedColors?.length === 0}
                 onChange={colorsChange}
                 options={nestedColors ? nestedColors.map(color => {
                     return {

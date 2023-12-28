@@ -11,7 +11,7 @@ export default class CarStore {
     }
 
     async createCar(car: Car): Promise<void> {
-        if (await CarService.CreateCar(car)) {
+        if (car = await CarService.CreateCar(car)) {
             this.cars = [...this.cars, car];
         }
         else {

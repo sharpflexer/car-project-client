@@ -3,6 +3,7 @@ import setupInterceptorsTo from "../http/Interceptors";
 import SignInFields from "../types/SignInFields";
 import SignUpFields from "../types/SignUpFields";
 import { ILogin } from "../interfaces/ILogin";
+import { axiosConfig } from "./instance";
 
 /***
  * Сервис для отправки запросов на сервер.
@@ -12,10 +13,7 @@ class AuthService {
     /***
      *  Экземпляр axios с необходимиыми настройками.
      */
-    instance: AxiosInstance = axios.create({
-        baseURL: 'https://localhost:7191',
-        withCredentials: true, // Разрешить передачу куки
-    });
+    instance: AxiosInstance = axios.create(axiosConfig);
 
     /***
      *  Конструктор, устанавливающий интерцепторы.

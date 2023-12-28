@@ -4,16 +4,14 @@ import { Car } from "../types/Car";
 import ReadonlyCar from "../types/ReadonlyCar";
 import { CarProperty } from "../types/CarProperty";
 import CarProperties from "../types/CarProperties";
+import { axiosConfig } from "./instance";
 
 
 class CarService {
     /***
     *  Экземпляр axios с необходимиыми настройками.
     */
-    instance: AxiosInstance = axios.create({
-        baseURL: 'https://localhost:7191',
-        withCredentials: true, // Разрешить передачу куки
-    });
+    instance: AxiosInstance = axios.create(axiosConfig);
 
     /***
      *  Конструктор, устанавливающий интерцепторы.
@@ -41,9 +39,8 @@ class CarService {
     /***
      * Создает автомобиль.
      */
-    public async CreateCar(car: Car): Promise<boolean> {
-        return (await this.instance.post<Car>("/api/car/create", car))
-            .status === 200;
+    public async CreateCar(car: Car): Promise<Car> {
+        return (await this.instance.post<Car>("/api/car/create", car)).data;
     }
 
     /***
