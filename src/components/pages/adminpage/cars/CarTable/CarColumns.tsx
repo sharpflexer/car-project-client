@@ -1,7 +1,7 @@
 import { EditOutlined, DeleteOutlined, PlusSquareOutlined } from "@ant-design/icons";
-import Role from "../../../../types/Role";
-import { Car } from "../../../../types/Car";
-import { CarProperty } from "../../../../types/CarProperty";
+import Role from "../../../../../types/Role";
+import { Car } from "../../../../../types/Car";
+import { CarProperty } from "../../../../../types/CarProperty";
 
 
 function getColumns(edit: (value: Car) => void,

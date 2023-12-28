@@ -2,12 +2,12 @@ import { Table } from "antd";
 import classes from "./CarTable.module.css";
 import { useContext, useEffect, useState } from "react";
 import { PlusSquareOutlined } from "@ant-design/icons";
-import { StoreContext } from "../../../..";
-import { Car } from "../../../../types/Car";
+import { StoreContext } from "../../../../..";
+import { Car } from "../../../../../types/Car";
 import getColumns from "./CarColumns";
-import CarEditModal from "../cars/modals/CarEditModal/CarEditModal";
-import CarDeleteModal from "../cars/modals/CarDeleteModal/CarDeleteModal";
-import CarCreateModal from "../cars/modals/CarCreateModal/CarCreateModal";
+import CarEditModal from "../modals/CarEditModal/CarEditModal";
+import CarDeleteModal from "../modals/CarDeleteModal/CarDeleteModal";
+import CarCreateModal from "../modals/CarCreateModal/CarCreateModal";
 import { observer } from "mobx-react";
 
 const CarTable = observer(() => {

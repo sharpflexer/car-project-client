@@ -2,7 +2,7 @@ import { observer } from "mobx-react";
 import Layout from "../../../share/Layout/Layout";
 import UserTable from "../users/UserTable/UserTable";
 import { useState } from "react";
-import CarTable from "../CarTable/CarTable";
+import CarTable from "../cars/CarTable/CarTable";
 import { Tabs, TabsProps } from "antd";
 
 const Admin = observer(() => {
