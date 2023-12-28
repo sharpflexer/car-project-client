@@ -49,14 +49,22 @@ const CarTable = observer(() => {
                     scroll={{ y: 700 }}
                     locale={{ emptyText: "Нет данных" }} />
                 <PlusSquareOutlined
-                    style={{ color: "green", fontSize: '25px'}}
+                    style={{ color: "green", fontSize: '25px' }}
                     onClick={() => Create()}
 
                 />
             </div>
-            <CarCreateModal visible={isCreateVisible} setVisible={setCreateVisible} />
-            <CarEditModal visible={isEditVisible} setVisible={setEditVisible} car={car} setCar={setCar} />
-            <CarDeleteModal visible={isDeleteVisible} setVisible={setDeleteVisible} car={car} />
+            {isCreateVisible ?
+                <CarCreateModal setVisible={setCreateVisible} />
+                : null}
+
+            {isEditVisible ?
+                <CarEditModal setVisible={setEditVisible} car={car} setCar={setCar} />
+                : null}
+
+            {isDeleteVisible ?
+                <CarDeleteModal setVisible={setDeleteVisible} car={car} />
+                : null}
         </>
     )
 });

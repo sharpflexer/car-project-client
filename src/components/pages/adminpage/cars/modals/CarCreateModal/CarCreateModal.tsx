@@ -8,41 +8,49 @@ import Brand from "../../../../../../types/Brand";
 import Model from "../../../../../../types/Model";
 import Color from "../../../../../../types/Color";
 
-interface IUserModal {
-    visible: boolean,
+interface ICarCreateModal {
     setVisible: (value: boolean) => void,
 }
 
-function CarCreateModal({ visible, setVisible }: IUserModal) {
+function CarCreateModal({ setVisible }: ICarCreateModal) {
     const { carStore } = useContext(StoreContext);
     const [properties, setProperties] = useState<CarProperties>({ brands: [], models: [], colors: [] })
-    const [car, setCar] = useState<Car>();
+    const [car, setCar] = useState<Car>({} as Car);
     const [nestedModels, setNestedModels] = useState<Model[]>([]);
     const [nestedColors, setNestedColors] = useState<Color[]>([]);
 
     useEffect(() => {
         const fetchProperties = async () => {
             setProperties(await CarService.ReadProperties());
+            return properties;
         };
-        fetchProperties();
+        fetchProperties()
+
+
     }, []);
 
     function brandsChange(value: number, option: { label: string; value: number; } | { label: string; value: number; }[]): void {
+        setCar({ ...car!, brand: properties.brands.find(b => b.id === value)! });
         const models = properties.brands
             .find(b => b.id === value)?.models;
         setNestedModels(models!);
     }
 
     function modelsChange(value: number, option: { label: string; value: number; } | { label: string; value: number; }[]): void {
+        setCar({ ...car!, model: properties.models.find(m => m.id === value)! });
         const colors = properties.models
             .find(m => m.id === value)?.colors;
         setNestedColors(colors!);
     }
 
+    function colorsChange(value: number, option: { label: string; value: number; } | { label: string; value: number; }[]): void {
+        setCar({ ...car!, color: properties.colors.find(c => c.id === value)! });
+    }
+
     return (
         <Modal
             title="Создание пользователя"
-            open={visible}
+            open={true}
             okText="Добавить"
             cancelText='Отмена'
             onCancel={() => setVisible(false)}
@@ -85,6 +93,7 @@ function CarCreateModal({ visible, setVisible }: IUserModal) {
                     nestedColors[0].id
                     : null}
                 style={{ width: 200 }}
+                onChange={colorsChange}
                 options={nestedColors ? nestedColors.map(color => {
                     return {
                         label: color.name,

@@ -12,7 +12,7 @@ export default class CarStore {
 
     async createCar(car: Car): Promise<void> {
         if (await CarService.CreateCar(car)) {
-            this.cars.push(car);
+            this.cars = [...this.cars, car];
         }
         else {
             alert("Не удалось добавить автомобиль.");
@@ -26,7 +26,10 @@ export default class CarStore {
 
     async updateCar(car: Car): Promise<void> {
         if (await CarService.UpdateCar(car)) {
-            this.cars.forEach((value) => value.id === car.id ? car : value);
+            const index = this.cars.findIndex(c => c.id === car.id);
+            const updatedCars = this.cars.filter((value) => value.id !== car.id);
+            updatedCars.splice(index, 0, car);
+            this.cars = updatedCars;
         }
         else {
             alert("Не удалось обновить автомобиль.");
@@ -35,8 +38,8 @@ export default class CarStore {
 
     async deleteCar(car: Car): Promise<void> {
         if (await CarService.DeleteCar(car)) {
-            const index = this.cars.findIndex(c => c.id === car.id);
-            this.cars.splice(index, 1);
+            const filteredCars = this.cars.filter((value) => value.id !== car.id);
+            this.cars = filteredCars;
         }
         else {
             alert("Не удалось удалить автомобиль.");

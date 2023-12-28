@@ -42,7 +42,7 @@ class CarService {
      * Создает автомобиль.
      */
     public async CreateCar(car: Car): Promise<boolean> {
-        return (await this.instance.post<Car>("/api/car/create", { car }))
+        return (await this.instance.post<Car>("/api/car/create", car))
             .status === 200;
     }
 
@@ -50,7 +50,7 @@ class CarService {
      * Обновляет автомобиль.
      */
     public async UpdateCar(car: Car): Promise<boolean> {
-        return (await this.instance.put<Car>("/api/car/update", { car }))
+        return (await this.instance.put<Car>("/api/car/update", car))
             .status === 200;
     }
 
@@ -58,7 +58,7 @@ class CarService {
      * Удаляет автомобиль.
      */
     public async DeleteCar(car: Car): Promise<boolean> {
-        return (await this.instance.delete<Car>("/api/car/delete", { data: { car } }))
+        return (await this.instance.delete<Car>("/api/car/delete", { data: car }))
             .status === 200;
     }
 
