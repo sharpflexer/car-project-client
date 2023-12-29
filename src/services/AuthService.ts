@@ -1,8 +1,8 @@
 import axios, { AxiosInstance, AxiosResponse } from "axios";
-import setupInterceptorsTo from "../http/Interceptors";
-import SignInFields from "../types/SignInFields";
-import SignUpFields from "../types/SignUpFields";
-import { ILogin } from "../interfaces/ILogin";
+import setupInterceptorsTo from "http/Interceptors";
+import SignInFields from "types/SignInFields";
+import SignUpFields from "types/SignUpFields";
+import { ILogin } from "interfaces/ILogin";
 import { axiosConfig } from "./instance";
 
 /***

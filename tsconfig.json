@@ -19,7 +19,14 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "baseUrl": "src",
+    "paths": {
+      "@modals/*": ["components/modals/*"],
+      "@shared/*": ["components/shared/*"],
+      "@shopcart/*": ["components/shopcart/*"],
+      "@tables/*": ["components/tables/*"],
+    },
   },
   "include": [
     "src"

@@ -1,9 +1,8 @@
-import { useContext } from "react";
-import ReactDOM from 'react-dom';
-import IModalCart from "../../../interfaces/IModalCart";
-import Scroll from "../../share/Scroll/Scroll";
-import CartCard from "../CartCard/CartCard";
-import CartStore from "../../../store/CartStore";
+import Scroll from "@shared/Scroll/Scroll";
+import IModalCart from "interfaces/IModalCart";
+import ReactDOM from "react-dom";
+import CartStore from "store/CartStore";
+import CartCard from "@shopcart/CartCard/CartCard";
 import classes from "./ModalCart.module.css";
 
 const ModalCart = ({ isCartActive, setCartActive }: IModalCart) => {
