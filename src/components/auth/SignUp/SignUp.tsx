@@ -1,11 +1,10 @@
 import { Formik, Field } from "formik";
-import { useContext } from "react";
 import InputError from "../InputError/InputError";
 import * as Yup from "yup";
-import classes from "./SignUp.module.css"
+import classes from "./SignUp.module.css";
 import SignUpFields from "../../../types/SignUpFields";
-import { StoreContext } from "../../..";
 import RequestService from "../../../services/AuthService";
+import TokenStore from "../../../store/TokenStore";
 
 export const SignUpSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email!').required('Required!'),
@@ -26,16 +25,13 @@ const defaultValues: SignUpFields = {
 }
 
 function SignUp({ toSignIn }: { toSignIn: () => void }) {
-
-  const {tokenStore} = useContext(StoreContext);
-
   async function doSignUp(values: SignUpFields, setSubmitting: (isSubmitting: boolean) => void) : Promise<void> {
       await RequestService.Register(values);
       setSubmitting(false);
   }
 
   async function logOut(): Promise<void> {
-    await tokenStore.logout(toSignIn);
+    await TokenStore.logout(toSignIn);
   }
 
   return (

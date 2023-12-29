@@ -1,15 +1,13 @@
 import { useContext } from "react";
-import { StoreContext } from "../../..";
-import classes from "./ModalCart.module.css";
 import ReactDOM from 'react-dom';
 import IModalCart from "../../../interfaces/IModalCart";
 import Scroll from "../../share/Scroll/Scroll";
 import CartCard from "../CartCard/CartCard";
+import CartStore from "../../../store/CartStore";
+import classes from "./ModalCart.module.css";
 
 const ModalCart = ({ isCartActive, setCartActive }: IModalCart) => {
-
-    const { cartStore } = useContext(StoreContext);
-    const { cars } = cartStore;
+    const { cars } = CartStore;
 
     const mapItems = () => uniqueSortedItems().map(car => (
         <CartCard key={car.id} car={car} />
@@ -34,7 +32,7 @@ const ModalCart = ({ isCartActive, setCartActive }: IModalCart) => {
                     <div className={classes.items}>
                         {mapItems()}
                         <div className={classes.totalPrice}>
-                            Итог: {cartStore.getTotalPrice()} рублей.
+                            Итог: {CartStore.getTotalPrice()} рублей.
                         </div>
                     </div>
                 </Scroll>

@@ -1,11 +1,8 @@
-import { useContext } from "react";
-import { StoreContext } from "../../../..";
 import ReadonlyCar from "../../../../types/ReadonlyCar";
 import classes from "./CarCard.module.css";
+import CartStore from "../../../../store/CartStore";
 
 function CarCard({ car }: { car: ReadonlyCar }) {
-
-    const { cartStore } = useContext(StoreContext);
 
     return (
         <div className={classes.card}>
@@ -20,7 +17,7 @@ function CarCard({ car }: { car: ReadonlyCar }) {
                     {car.price} рублей
                 </div>
                 <button className={classes.cartButton}
-                    onClick={() => cartStore.addToCart(car)}>
+                    onClick={() => CartStore.addToCart(car)}>
                     В корзину
                 </button>
             </div>

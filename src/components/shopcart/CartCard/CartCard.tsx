@@ -1,12 +1,8 @@
-import { useContext } from "react";
-import { StoreContext } from "../../..";
+import CartStore from "../../../store/CartStore";
 import ReadonlyCar from "../../../types/ReadonlyCar";
 import classes from "./CartCard.module.css";
 
 function CartCard({ car }: { car: ReadonlyCar }) {
-
-    const { cartStore } = useContext(StoreContext);
-
     return (
         <div className={classes.cardLayout}>
             <div className={classes.card}>
@@ -22,14 +18,14 @@ function CartCard({ car }: { car: ReadonlyCar }) {
                     </div>
                     <div className={classes.buttonPanel}>
                         <button className={classes.cartButton}
-                            onClick={() => cartStore.removeFromCart(car)}>
+                            onClick={() => CartStore.removeFromCart(car)}>
                             -
                         </button>
                         <div className={classes.count}>
-                            {cartStore.getCountOf(car)}
+                            {CartStore.getCountOf(car)}
                         </div>
                         <button className={classes.cartButton}
-                            onClick={() => cartStore.addToCart(car)}>
+                            onClick={() => CartStore.addToCart(car)}>
                             +
                         </button>
                     </div>
@@ -42,7 +38,7 @@ function CartCard({ car }: { car: ReadonlyCar }) {
             <img
                 className={classes.trashButton}
                 src={`${process.env.PUBLIC_URL}/png/trash.png`}
-                onClick={() => cartStore.clearCart(car)}>
+                onClick={() => CartStore.clearCart(car)}>
             </img>
         </div>
     );

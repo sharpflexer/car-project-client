@@ -1,24 +1,21 @@
-import { useContext } from "react";
 import { Modal } from "antd";
-import { StoreContext } from "../../../../../..";
 import { User } from "../../../../../../types/User";
+import UserStore from "../../../../../../store/UserStore";
 
 interface IUserDeleteModal {
-    visible: boolean;
     setVisible: (value: boolean) => void;
     user: User;
 }
 
-function UserDeleteModal({ visible, setVisible, user }: IUserDeleteModal) {
-    const { userStore } = useContext(StoreContext);
+function UserDeleteModal({ setVisible, user }: IUserDeleteModal) {
 
     return (
         <Modal title="Вы уверены что хотите удалить этого пользователя?"
             okText="Да"
             cancelText="Нет"
-            open={visible}
+            open={true}
             onOk={async () => {
-                await userStore.deleteUser(user);
+                await UserStore.deleteUser(user);
                 setVisible(false);
             }}
             onCancel={() => setVisible(false)}

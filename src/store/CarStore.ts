@@ -3,7 +3,7 @@ import { Car } from "../types/Car";
 import CarService from "../services/CarService";
 
 
-export default class CarStore {
+class CarStore {
     cars: Car[] = [];
 
     constructor() {
@@ -46,3 +46,6 @@ export default class CarStore {
         }
     }
 }
+
+const _instance = new CarStore();
+export default _instance as CarStore;

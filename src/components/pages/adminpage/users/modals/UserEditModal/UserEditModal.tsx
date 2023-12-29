@@ -1,27 +1,22 @@
 import { Input, Modal, Typography } from "antd";
-import { useContext, useState } from "react";
-import { Formik } from "formik";
-import { StoreContext } from "../../../../../..";
 import { User } from "../../../../../../types/User";
+import UserStore from "../../../../../../store/UserStore";
 
 interface IUserModal {
-    visible: boolean,
     setVisible: (value: boolean) => void,
     user: User,
     setUser: (value: User) => void
 }
 
-function UserEditModal({ visible, setVisible, user, setUser }: IUserModal) {
-    const { userStore } = useContext(StoreContext);
-
+function UserEditModal({setVisible, user, setUser }: IUserModal) {
     return (
         <Modal
             title="Изменение пользователя"
-            open={visible}
+            open={true}
             okText="Сохранить"
             onCancel={() => setVisible(false)}
             onOk={async () => {
-                await userStore.updateUser(user!);
+                await UserStore.updateUser(user!);
                 setVisible(false);
             }}
         >

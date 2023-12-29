@@ -1,11 +1,10 @@
 import { Modal, Typography, Select, Input } from "antd";
-import { useContext, useState, useEffect } from "react";
-import { StoreContext } from "../../../../../..";
-import CarService from "../../../../../../services/CarService";
+import { useState, useEffect } from "react";
 import { Car } from "../../../../../../types/Car";
 import CarProperties from "../../../../../../types/CarProperties";
 import Model from "../../../../../../types/Model";
 import Color from "../../../../../../types/Color";
+import CarStore from "../../../../../../store/CarStore";
 
 interface ICarEditModal {
     setVisible: (value: boolean) => void,
@@ -14,7 +13,6 @@ interface ICarEditModal {
 }
 
 function CarEditModal({ setVisible, car, properties }: ICarEditModal) {
-    const { carStore } = useContext(StoreContext);
     const [nestedModels, setNestedModels] = useState<Model[]>([]);
     const [nestedColors, setNestedColors] = useState<Color[]>([]);
     const [editCar, setEditCar] = useState<Car>(car);
@@ -58,7 +56,7 @@ function CarEditModal({ setVisible, car, properties }: ICarEditModal) {
             cancelText='Отмена'
             onCancel={() => setVisible(false)}
             onOk={async () => {
-                await carStore.updateCar(editCar);
+                await CarStore.updateCar(editCar);
                 setVisible(false);
             }}
         >

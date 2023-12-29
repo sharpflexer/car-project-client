@@ -1,19 +1,17 @@
 import { Link } from "react-router-dom";
 import classes from "./Header.module.css";
-import { StoreContext } from "../../..";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Role } from "../../../enums/Role";
 import { observer } from "mobx-react";
 import ModalCart from "../../shopcart/ModalCart/ModalCart";
+import TokenStore from "../../../store/TokenStore";
+import CartStore from "../../../store/CartStore";
 
 const Header = observer(() => {
-    const { cartStore } = useContext(StoreContext);
-    const { tokenStore } = useContext(StoreContext);
-
     const [isCartActive, setCartActive] = useState(false);
 
     function hasAccess(...rolesWithAccess: Role[]): boolean {
-        return rolesWithAccess.includes(tokenStore.role);
+        return rolesWithAccess.includes(TokenStore.role);
     }
 
     return (
@@ -32,9 +30,9 @@ const Header = observer(() => {
                         onClick={() => setCartActive(true)}>
                         Корзина
                     </button>
-                    {cartStore.cars.length !== 0 ?
+                    {CartStore.cars.length !== 0 ?
                         <div className={classes.cartCount}>
-                            {cartStore.cars.length}
+                            {CartStore.cars.length}
                         </div>
                         : null}
                 </div>

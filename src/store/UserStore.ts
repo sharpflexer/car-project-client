@@ -3,7 +3,7 @@ import { User } from "../types/User";
 import UserService from "../services/UserService";
 
 
-export default class UserStore {
+class UserStore {
     users: User[] = [];
 
     constructor() {
@@ -38,3 +38,6 @@ export default class UserStore {
         }
     }
 }
+
+const _instance = new UserStore();
+export default _instance as UserStore;

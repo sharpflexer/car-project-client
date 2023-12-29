@@ -1,7 +1,6 @@
-import { useContext } from "react";
 import { Modal } from "antd";
 import { Car } from "../../../../../../types/Car";
-import { StoreContext } from "../../../../../..";
+import CarStore from "../../../../../../store/CarStore";
 
 interface ICarDeleteModal {
     setVisible: (value: boolean) => void;
@@ -9,15 +8,13 @@ interface ICarDeleteModal {
 }
 
 function CarDeleteModal({ setVisible, car }: ICarDeleteModal) {
-    const { carStore } = useContext(StoreContext);
-
     return (
         <Modal title="Вы уверены что хотите удалить этот автомобиль?"
             open={true}
             okText="Да"
             cancelText="Нет"
             onOk={async () => {
-                await carStore.deleteCar(car);
+                await CarStore.deleteCar(car);
                 setVisible(false);
             }}
             onCancel={() => setVisible(false)}

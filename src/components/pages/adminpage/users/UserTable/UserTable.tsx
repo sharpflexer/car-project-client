@@ -1,18 +1,15 @@
 import { Table } from "antd";
 import classes from "./UserTable.module.css";
-import { useContext, useEffect, useState } from "react";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import { StoreContext } from "../../../../..";
+import { useEffect, useState } from "react";
 import { User } from "../../../../../types/User";
-import { Role } from "../../../../../types/Role";
 import getColumns from "./UserColumns";
 import { observer } from "mobx-react";
 import UserDeleteModal from "../modals/UserDeleteModal/UserDeleteModal";
 import UserEditModal from "../modals/UserEditModal/UserEditModal";
+import UserStore from "../../../../../store/UserStore";
 
 const UserTable = observer(() => {
-    const { userStore } = useContext(StoreContext);
-    const { users } = userStore;
+    const { users } = UserStore;
 
     const [isEditVisible, setEditVisible] = useState(false);
     const [isDeleteVisible, setDeleteVisible] = useState(false);
@@ -22,7 +19,7 @@ const UserTable = observer(() => {
 
     useEffect(() => {
         const fetchUsers = async () => {
-            await userStore.readUsers();
+            await UserStore.readUsers();
         };
         fetchUsers()
             .then(() => setLoading(false));
@@ -44,12 +41,16 @@ const UserTable = observer(() => {
                 <Table dataSource={users}
                     columns={getColumns(Edit, Delete)}
                     pagination={false}
-                    scroll={{ y: 700 }}
+                    scroll={{ y: 600 }}
                     loading={isLoading}
                     locale={{ emptyText: "Нет данных" }} />
             </div>
-            <UserEditModal visible={isEditVisible} setVisible={setEditVisible} user={user} setUser={setUser} />
-            <UserDeleteModal visible={isDeleteVisible} setVisible={setDeleteVisible} user={user} />
+            {isEditVisible ?
+                <UserEditModal setVisible={setEditVisible} user={user} setUser={setUser} />
+                : null}
+            {isDeleteVisible ?
+                <UserDeleteModal setVisible={setDeleteVisible} user={user} />
+                : null}
         </>
     );
 });

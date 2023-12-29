@@ -1,8 +1,7 @@
 import { Table } from "antd";
 import classes from "./CarTable.module.css";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { PlusSquareOutlined } from "@ant-design/icons";
-import { StoreContext } from "../../../../..";
 import { Car } from "../../../../../types/Car";
 import getColumns from "./CarColumns";
 import CarEditModal from "../modals/CarEditModal/CarEditModal";
@@ -11,10 +10,10 @@ import CarCreateModal from "../modals/CarCreateModal/CarCreateModal";
 import { observer } from "mobx-react";
 import CarProperties from "../../../../../types/CarProperties";
 import CarService from "../../../../../services/CarService";
+import CarStore from "../../../../../store/CarStore";
 
 const CarTable = observer(() => {
-    const { carStore } = useContext(StoreContext);
-    const { cars } = carStore;
+    const { cars } = CarStore;
 
     const [isCreateVisible, setCreateVisible] = useState(false);
     const [isEditVisible, setEditVisible] = useState(false);
@@ -33,7 +32,7 @@ const CarTable = observer(() => {
 
     useEffect(() => {
         const fetchCars = async () => {
-            await carStore.readFullCars();
+            await CarStore.readFullCars();
         };
         const fetchProperties = async () => {
             setProperties(await CarService.ReadProperties());
@@ -64,7 +63,7 @@ const CarTable = observer(() => {
                 <Table dataSource={cars}
                     columns={getColumns(Edit, Delete)}
                     pagination={false}
-                    scroll={{ y: 700 }}
+                    scroll={{ y: 600 }}
                     loading={isLoading}
                     locale={{ emptyText: "Нет данных" }} />
                 <PlusSquareOutlined

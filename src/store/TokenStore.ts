@@ -4,7 +4,7 @@ import SignInFields from "../types/SignInFields";
 import { Role } from "../enums/Role";
 import { persist } from "mobx-persist";
 
-export default class TokenStore{
+class TokenStore{
      @persist isAuth = false;
      @persist("object") @observable role: Role = Role.None;
 
@@ -37,3 +37,6 @@ export default class TokenStore{
           }
      }
 }
+
+const _instance = new TokenStore();
+export default _instance as TokenStore;

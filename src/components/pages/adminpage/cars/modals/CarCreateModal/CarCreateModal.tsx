@@ -1,12 +1,10 @@
 import { Input, Modal, Select, Typography } from "antd";
-import { useContext, useEffect, useState } from "react";
-import { StoreContext } from "../../../../../..";
+import { useState } from "react";
 import { Car } from "../../../../../../types/Car";
-import CarService from "../../../../../../services/CarService";
 import CarProperties from "../../../../../../types/CarProperties";
-import Brand from "../../../../../../types/Brand";
 import Model from "../../../../../../types/Model";
 import Color from "../../../../../../types/Color";
+import CarStore from "../../../../../../store/CarStore";
 
 interface ICarCreateModal {
     setVisible: (value: boolean) => void,
@@ -14,7 +12,6 @@ interface ICarCreateModal {
 }
 
 function CarCreateModal({setVisible, properties}: ICarCreateModal) {
-    const { carStore } = useContext(StoreContext);
     const [car, setCar] = useState<Car>({} as Car);
     const [nestedModels, setNestedModels] = useState<Model[]>([]);
     const [nestedColors, setNestedColors] = useState<Color[]>([]);
@@ -47,7 +44,7 @@ function CarCreateModal({setVisible, properties}: ICarCreateModal) {
             cancelText='Отмена'
             onCancel={() => setVisible(false)}
             onOk={async () => {
-                await carStore.createCar(car!);
+                await CarStore.createCar(car!);
                 setVisible(false);
             }}
         >
