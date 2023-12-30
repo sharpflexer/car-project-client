@@ -11,6 +11,7 @@ const Header = observer(() => {
     const [isCartActive, setCartActive] = useState(false);
 
     function hasAccess(...rolesWithAccess: Role[]): boolean {
+        TokenStore.checkoutRole();
         return rolesWithAccess.includes(TokenStore.role);
     }
 

@@ -1,11 +1,20 @@
 import { observer } from "mobx-react";
 import Layout from "../../../share/Layout/Layout";
 import UserTable from "../users/UserTable/UserTable";
-import { useState } from "react";
 import CarTable from "../cars/CarTable/CarTable";
 import { Tabs, TabsProps } from "antd";
+import TokenStore from "../../../../store/TokenStore";
+import { Role } from "../../../../enums/Role";
 
 const Admin = observer(() => {
+    const { role } = TokenStore;
+
+    function checkoutAdmin(): boolean {
+        TokenStore.checkoutRole();
+
+        return role !== Role.Admin;
+    }
+
     const tabs: TabsProps['items'] = [
         {
             key: 'cars',
@@ -16,6 +25,7 @@ const Admin = observer(() => {
             key: 'users',
             label: 'Пользователи',
             children: <UserTable />,
+            disabled: checkoutAdmin()
         }
     ]
     return (
@@ -26,3 +36,5 @@ const Admin = observer(() => {
 });
 
 export default Admin;
+
+
