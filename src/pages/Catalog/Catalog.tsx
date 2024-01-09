@@ -12,7 +12,6 @@ function Catalog() {
     const [cars, setCars] = useState<ReadonlyCar[]>([]);
     const [filterState, setFilterState] = useState<Filter>({ field: "id", isDesc: false });
 
-
     useEffect(() => {
         const fetchCars = async () => {
             const result = await CarService.GetCars();

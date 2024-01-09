@@ -2,7 +2,6 @@ import { makeAutoObservable } from "mobx";
 import { Car } from "../types/Car";
 import CarService from "../services/CarService";
 
-
 class CarStore {
     cars: Car[] = [];
 

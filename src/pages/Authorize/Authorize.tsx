@@ -3,7 +3,6 @@ import { useState } from "react";
 import SignUp from "./SignUp/SignUp";
 import SignIn from "./SignIn/SignIn";
 
-
 function Authorize() {
     const [isSignIn, setSignIn] = useState(true);
 

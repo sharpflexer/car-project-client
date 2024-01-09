@@ -17,7 +17,6 @@ const SignInSchema = Yup.object().shape({
     .required('Required!')
 });
 
-
 const defaultValues: SignInFields = {
   login: "",
   password: ""

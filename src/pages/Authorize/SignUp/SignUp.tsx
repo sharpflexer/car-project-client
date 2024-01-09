@@ -6,7 +6,6 @@ import AuthService from "../../../services/AuthService";
 import TokenStore from "../../../store/TokenStore";
 import SignUpFields from "../../../types/SignUpFields";
 
-
 export const SignUpSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email!').required('Required!'),
   login: Yup.string()

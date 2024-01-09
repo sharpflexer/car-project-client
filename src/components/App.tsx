@@ -5,7 +5,6 @@ import Admin from '../pages/Admin/Admin';
 import Authorize from '../pages/Authorize/Authorize';
 import Catalog from '../pages/Catalog/Catalog';
 
-
 function App() {
   const location = useLocation();
 

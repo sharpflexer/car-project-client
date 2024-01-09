@@ -5,7 +5,6 @@ import { Car } from "../types/Car";
 import CarProperties from "../types/CarProperties";
 import ReadonlyCar from "../types/ReadonlyCar";
 
-
 class CarService {
     /***
     *  Экземпляр axios с необходимиыми настройками.

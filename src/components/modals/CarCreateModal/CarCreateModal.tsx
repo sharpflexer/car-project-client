@@ -6,7 +6,6 @@ import CarProperties from "../../../types/CarProperties";
 import Model from "../../../types/Model";
 import Color from "../../../types/Color";
 
-
 interface ICarCreateModal {
     setVisible: (value: boolean) => void,
     properties: CarProperties

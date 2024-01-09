@@ -17,7 +17,6 @@ const ModalCart = ({ isCartActive, setCartActive }: IModalCart) => {
         return self.indexOf(elem) === index && self.includes(elem);
     }).sort((a, b) => a.id - b.id);
 
-
     function closeModal() {
         setCartActive(false);
     }

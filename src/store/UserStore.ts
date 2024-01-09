@@ -2,7 +2,6 @@ import { makeAutoObservable } from "mobx";
 import { User } from "../types/User";
 import UserService from "../services/UserService";
 
-
 class UserStore {
     users: User[] = [];
 
