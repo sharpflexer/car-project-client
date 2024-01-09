@@ -1,10 +1,11 @@
 import { Modal, Typography, Select, Input } from "antd";
 import { useState, useEffect } from "react";
-import CarStore from "store/CarStore";
-import { Car } from "types/Car";
-import CarProperties from "types/CarProperties";
-import Color from "types/Color";
-import Model from "types/Model";
+import CarStore from "../../../store/CarStore";
+import { Car } from "../../../types/Car";
+import CarProperties from "../../../types/CarProperties";
+import Model from "../../../types/Model";
+import Color from "../../../types/Color";
+
 
 interface ICarEditModal {
     setVisible: (value: boolean) => void,

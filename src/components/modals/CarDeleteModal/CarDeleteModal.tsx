@@ -1,6 +1,7 @@
 import { Modal } from "antd";
-import CarStore from "store/CarStore";
-import { Car } from "types/Car";
+import CarStore from "../../../store/CarStore";
+import { Car } from "../../../types/Car";
+
 
 interface ICarDeleteModal {
     setVisible: (value: boolean) => void;

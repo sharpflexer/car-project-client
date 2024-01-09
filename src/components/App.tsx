@@ -1,9 +1,9 @@
 
 import {Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import classes from "./App.module.css";
-import Admin from 'pages/Admin/Admin';
-import Authorize from 'pages/Authorize/Authorize';
-import Catalog from 'pages/Catalog/Catalog';
+import Admin from '../pages/Admin/Admin';
+import Authorize from '../pages/Authorize/Authorize';
+import Catalog from '../pages/Catalog/Catalog';
 
 
 function App() {

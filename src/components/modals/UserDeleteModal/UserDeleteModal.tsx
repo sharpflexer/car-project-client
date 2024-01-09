@@ -1,6 +1,6 @@
 import { Modal } from "antd";
-import UserStore from "store/UserStore";
-import { User } from "types/User";
+import UserStore from "../../../store/UserStore";
+import { User } from "../../../types/User";
 
 interface IUserDeleteModal {
     setVisible: (value: boolean) => void;

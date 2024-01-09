@@ -1,6 +1,6 @@
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import { Car } from "types/Car";
-import { CarProperty } from "types/CarProperty";
+import { Car } from "../../../types/Car";
+import { CarProperty } from "../../../types/CarProperty";
 
 
 function getColumns(

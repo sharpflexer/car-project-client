@@ -2,15 +2,15 @@ import { useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import { Table } from "antd";
 import { PlusSquareOutlined } from "@ant-design/icons";
-import CarCreateModal from "@modals/CarCreateModal/CarCreateModal";
-import CarDeleteModal from "@modals/CarDeleteModal/CarDeleteModal";
-import CarEditModal from "@modals/CarEditModal/CarEditModal";
-import CarService from "services/CarService";
-import CarStore from "store/CarStore";
-import { Car } from "types/Car";
-import CarProperties from "types/CarProperties";
 import getColumns from "./CarColumns";
 import classes from "./CarTable.module.css";
+import CarService from "../../../services/CarService";
+import CarStore from "../../../store/CarStore";
+import { Car } from "../../../types/Car";
+import CarProperties from "../../../types/CarProperties";
+import CarCreateModal from "../../modals/CarCreateModal/CarCreateModal";
+import CarDeleteModal from "../../modals/CarDeleteModal/CarDeleteModal";
+import CarEditModal from "../../modals/CarEditModal/CarEditModal";
 
 const CarTable = observer(() => {
     const { cars } = CarStore;

@@ -1,4 +1,4 @@
-import ReadonlyCar from "types/ReadonlyCar";
+import ReadonlyCar from "../../../types/ReadonlyCar";
 import classes from "./CarHeader.module.css";
 
 interface ICarHeader {

@@ -1,9 +1,11 @@
-import { TabsProps, Layout, Tabs } from "antd";
-import CarTable from "components/tables/CarTable/CarTable";
-import UserTable from "components/tables/UserTable/UserTable";
-import { Role } from "enums/Role";
+import { TabsProps, Tabs } from "antd";
 import { observer } from "mobx-react";
-import TokenStore from "store/TokenStore";
+import CarTable from "../../components/tables/CarTable/CarTable";
+import UserTable from "../../components/tables/UserTable/UserTable";
+import { Role } from "../../enums/Role";
+import TokenStore from "../../store/TokenStore";
+import Layout from "../../components/shared/Layout/Layout";
+
 
 
 const Admin = observer(() => {

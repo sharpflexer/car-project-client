@@ -1,9 +1,10 @@
-import Scroll from "@shared/Scroll/Scroll";
-import IModalCart from "interfaces/IModalCart";
+
 import ReactDOM from "react-dom";
-import CartStore from "store/CartStore";
-import CartCard from "@shopcart/CartCard/CartCard";
 import classes from "./ModalCart.module.css";
+import IModalCart from "../../../interfaces/IModalCart";
+import CartStore from "../../../store/CartStore";
+import Scroll from "../../shared/Scroll/Scroll";
+import CartCard from "../CartCard/CartCard";
 
 const ModalCart = ({ isCartActive, setCartActive }: IModalCart) => {
     const { cars } = CartStore;

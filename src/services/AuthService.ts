@@ -1,10 +1,10 @@
 import axios, { AxiosInstance, AxiosResponse } from "axios";
-import setupInterceptorsTo from "http/Interceptors";
-import SignInFields from "types/SignInFields";
-import SignUpFields from "types/SignUpFields";
-import { ILogin } from "interfaces/ILogin";
 import { axiosConfig } from "./instance";
 import { Role } from "../enums/Role";
+import setupInterceptorsTo from "../http/Interceptors";
+import { ILogin } from "../interfaces/ILogin";
+import SignInFields from "../types/SignInFields";
+import SignUpFields from "../types/SignUpFields";
 
 /***
  * Сервис для отправки запросов на сервер.

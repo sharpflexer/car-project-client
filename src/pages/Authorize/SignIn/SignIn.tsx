@@ -3,8 +3,8 @@ import InputError from "../InputError/InputError";
 import classes from "./SignIn.module.css";
 import * as Yup from 'yup';
 import { useNavigate } from "react-router-dom";
-import TokenStore from "store/TokenStore";
-import SignInFields from "types/SignInFields";
+import TokenStore from "../../../store/TokenStore";
+import SignInFields from "../../../types/SignInFields";
 
 const SignInSchema = Yup.object().shape({
   login: Yup.string()

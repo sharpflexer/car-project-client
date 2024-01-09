@@ -1,17 +1,18 @@
 import { Input, Modal, Select, Typography } from "antd";
 import { useState } from "react";
-import CarStore from "store/CarStore";
-import { Car } from "types/Car";
-import CarProperties from "types/CarProperties";
-import Color from "types/Color";
-import Model from "types/Model";
+import CarStore from "../../../store/CarStore";
+import { Car } from "../../../types/Car";
+import CarProperties from "../../../types/CarProperties";
+import Model from "../../../types/Model";
+import Color from "../../../types/Color";
+
 
 interface ICarCreateModal {
     setVisible: (value: boolean) => void,
     properties: CarProperties
 }
 
-function CarCreateModal({setVisible, properties}: ICarCreateModal) {
+function CarCreateModal({ setVisible, properties }: ICarCreateModal) {
     const [car, setCar] = useState<Car>({} as Car);
     const [nestedModels, setNestedModels] = useState<Model[]>([]);
     const [nestedColors, setNestedColors] = useState<Color[]>([]);

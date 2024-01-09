@@ -1,6 +1,6 @@
-import CartStore from "store/CartStore";
+import CartStore from "../../../store/CartStore";
+import ReadonlyCar from "../../../types/ReadonlyCar";
 import classes from "./CarCard.module.css";
-import ReadonlyCar from "types/ReadonlyCar";
 
 
 function CarCard({ car }: { car: ReadonlyCar }) {

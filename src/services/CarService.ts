@@ -1,9 +1,9 @@
 import axios, { AxiosInstance } from "axios";
-import setupInterceptorsTo from "http/Interceptors";
-import { Car } from "types/Car";
-import ReadonlyCar from "types/ReadonlyCar";
-import CarProperties from "types/CarProperties";
 import { axiosConfig } from "./instance";
+import setupInterceptorsTo from "../http/Interceptors";
+import { Car } from "../types/Car";
+import CarProperties from "../types/CarProperties";
+import ReadonlyCar from "../types/ReadonlyCar";
 
 
 class CarService {

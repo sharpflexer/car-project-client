@@ -1,11 +1,11 @@
-import ModalCart from "@components/shopcart/ModalCart/ModalCart";
-import { Role } from "enums/Role";
 import { observer } from "mobx-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import CartStore from "store/CartStore";
-import TokenStore from "store/TokenStore";
 import classes from './Header.module.css';
+import { Role } from "../../../enums/Role";
+import CartStore from "../../../store/CartStore";
+import TokenStore from "../../../store/TokenStore";
+import ModalCart from "../../shopcart/ModalCart/ModalCart";
 
 const Header = observer(() => {
     const [isCartActive, setCartActive] = useState(false);

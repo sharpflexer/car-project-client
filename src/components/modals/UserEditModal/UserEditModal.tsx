@@ -1,6 +1,7 @@
 import { Input, Modal, Typography } from "antd";
-import UserStore from "store/UserStore";
-import { User } from "types/User";
+import UserStore from "../../../store/UserStore";
+import { User } from "../../../types/User";
+
 
 interface IUserModal {
     setVisible: (value: boolean) => void,

@@ -2,9 +2,10 @@ import { Formik, Field } from "formik";
 import InputError from "../InputError/InputError";
 import * as Yup from "yup";
 import classes from "./SignUp.module.css";
-import AuthService from "services/AuthService";
-import TokenStore from "store/TokenStore";
-import SignUpFields from "types/SignUpFields";
+import AuthService from "../../../services/AuthService";
+import TokenStore from "../../../store/TokenStore";
+import SignUpFields from "../../../types/SignUpFields";
+
 
 export const SignUpSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email!').required('Required!'),

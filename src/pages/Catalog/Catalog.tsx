@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { Layout } from "antd";
 import classes from "./Catalog.module.css";
-import Scroll from "@shared/Scroll/Scroll";
-import CarService from "services/CarService";
-import { Filter } from "types/Filter";
-import ReadonlyCar from "types/ReadonlyCar";
 import CarCard from "./CarCard/CarCard";
 import CarHeader from "./CarHeader/CarHeader";
+import Scroll from "../../components/shared/Scroll/Scroll";
+import CarService from "../../services/CarService";
+import { Filter } from "../../types/Filter";
+import ReadonlyCar from "../../types/ReadonlyCar";
+import Layout from "../../components/shared/Layout/Layout";
 
 function Catalog() {
     const [cars, setCars] = useState<ReadonlyCar[]>([]);

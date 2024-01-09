@@ -1,12 +1,12 @@
 import { Table } from "antd";
 import { observer } from "mobx-react";
 import { useState, useEffect } from "react";
-import UserStore from "store/UserStore";
-import { User } from "types/User";
 import getColumns from "./UserColumns";
 import classes from "./UserTable.module.css";
-import UserEditModal from "@modals/UserEditModal/UserEditModal";
-import UserDeleteModal from "@modals/UserDeleteModal/UserDeleteModal";
+import UserStore from "../../../store/UserStore";
+import { User } from "../../../types/User";
+import UserDeleteModal from "../../modals/UserDeleteModal/UserDeleteModal";
+import UserEditModal from "../../modals/UserEditModal/UserEditModal";
 
 const UserTable = observer(() => {
     const { users } = UserStore;
