@@ -15,7 +15,9 @@ class UserStore {
     }
 
     async updateUser(user: User): Promise<void> {
-        if (await UserService.UpdateUser(user)) {
+        const isUpdated = await UserService.UpdateUser(user);
+
+        if (isUpdated) {
             const index = this.users.findIndex(u => u.id === user.id);
             const updatedUsers = this.users.filter((value) => value.id !== user.id);
 
@@ -28,7 +30,8 @@ class UserStore {
     }
 
     async deleteUser(user: User) {
-        if (await UserService.DeleteUser(user)) {
+        const isDeleted = await UserService.DeleteUser(user);
+        if (isDeleted) {
             const filteredUsers = this.users.filter((value) => value.id !== user.id);
 
             this.users = filteredUsers;

@@ -6,9 +6,7 @@ import { Role } from "../../enums/Role";
 import TokenStore from "../../store/TokenStore";
 import Layout from "../../components/shared/Layout/Layout";
 
-
-
-const Admin = observer(() => {
+function Admin() {
     const { role } = TokenStore;
 
     function checkoutAdmin(): boolean {
@@ -35,8 +33,8 @@ const Admin = observer(() => {
             <Tabs defaultActiveKey="cars" items={tabs} />
         </Layout>
     );
-});
+}
 
-export default Admin;
+export default observer(Admin);
 
 

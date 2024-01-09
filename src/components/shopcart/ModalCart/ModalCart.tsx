@@ -13,7 +13,6 @@ const ModalCart = ({ isCartActive, setCartActive }: IModalCart) => {
         <CartCard key={car.id} car={car} />
     ));
 
-    console.log("render");
     const uniqueSortedItems = () => cars.filter((elem, index, self) => {
         return self.indexOf(elem) === index && self.includes(elem);
     }).sort((a, b) => a.id - b.id);

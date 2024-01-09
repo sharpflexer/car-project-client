@@ -6,7 +6,6 @@ import CarProperties from "../../../types/CarProperties";
 import Model from "../../../types/Model";
 import Color from "../../../types/Color";
 
-
 interface ICarEditModal {
     setVisible: (value: boolean) => void,
     car: Car,
@@ -25,7 +24,6 @@ function CarEditModal({ setVisible, car, properties }: ICarEditModal) {
 
         const colors = properties.models
             .find(m => m.id === editCar.model.id)?.colors;
-
         setNestedColors(colors!);
     }, []);
 

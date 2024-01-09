@@ -7,7 +7,7 @@ import CartStore from "../../../store/CartStore";
 import TokenStore from "../../../store/TokenStore";
 import ModalCart from "../../shopcart/ModalCart/ModalCart";
 
-const Header = observer(() => {
+function Header() {
     const [isCartActive, setCartActive] = useState(false);
 
     function hasAccess(...rolesWithAccess: Role[]): boolean {
@@ -42,6 +42,6 @@ const Header = observer(() => {
                 : null}
         </div>
     );
-});
+}
 
-export default Header;
+export default observer(Header);

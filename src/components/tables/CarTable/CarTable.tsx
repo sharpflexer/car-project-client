@@ -12,7 +12,7 @@ import CarCreateModal from "../../modals/CarCreateModal/CarCreateModal";
 import CarDeleteModal from "../../modals/CarDeleteModal/CarDeleteModal";
 import CarEditModal from "../../modals/CarEditModal/CarEditModal";
 
-const CarTable = observer(() => {
+function CarTable() {
     const { cars } = CarStore;
 
     const [isCreateVisible, setCreateVisible] = useState(false);
@@ -88,6 +88,6 @@ const CarTable = observer(() => {
                 : null}
         </>
     )
-});
+}
 
-export default CarTable;
+export default observer(CarTable);

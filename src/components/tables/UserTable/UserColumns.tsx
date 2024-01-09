@@ -2,8 +2,6 @@ import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { Role } from "../../../types/Role";
 import { User } from "../../../types/User";
 
-
-
 function getColumns(edit: (value: User) => void,
     remove: (value: User) => void) {
 

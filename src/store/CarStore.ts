@@ -11,7 +11,9 @@ class CarStore {
     }
 
     async createCar(car: Car): Promise<void> {
-        if (car = await CarService.CreateCar(car)) {
+        car = await CarService.CreateCar(car);
+
+        if (car) {
             this.cars = [...this.cars, car];
         }
         else {
@@ -21,11 +23,11 @@ class CarStore {
 
     async readFullCars(): Promise<void> {
         this.cars =  await CarService.GetFullCars();
-        console.log(this.cars);
     }
 
     async updateCar(car: Car): Promise<void> {
-        if (await CarService.UpdateCar(car)) {
+        const isUpdated = await CarService.UpdateCar(car);
+        if (isUpdated) {
             const index = this.cars.findIndex(c => c.id === car.id);
             const updatedCars = this.cars.filter((value) => value.id !== car.id);
             updatedCars.splice(index, 0, car);
@@ -37,7 +39,8 @@ class CarStore {
     }
 
     async deleteCar(car: Car): Promise<void> {
-        if (await CarService.DeleteCar(car)) {
+        const isDeleted = await CarService.DeleteCar(car);
+        if (isDeleted) {
             const filteredCars = this.cars.filter((value) => value.id !== car.id);
             this.cars = filteredCars;
         }

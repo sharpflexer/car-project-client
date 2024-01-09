@@ -8,7 +8,7 @@ import { User } from "../../../types/User";
 import UserDeleteModal from "../../modals/UserDeleteModal/UserDeleteModal";
 import UserEditModal from "../../modals/UserEditModal/UserEditModal";
 
-const UserTable = observer(() => {
+function UserTable() {
     const { users } = UserStore;
 
     const [isEditVisible, setEditVisible] = useState(false);
@@ -53,6 +53,6 @@ const UserTable = observer(() => {
                 : null}
         </>
     );
-});
+}
 
-export default UserTable;
+export default observer(UserTable);

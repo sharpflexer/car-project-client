@@ -3,8 +3,7 @@ import ReadonlyCar from "../../../types/ReadonlyCar";
 import classes from "./CarCard.module.css";
 
 
-function CarCard({ car }: { car: ReadonlyCar }) {
-
+function CarCard({ car } : { car: ReadonlyCar }) {
     return (
         <div className={classes.card}>
             <div className={classes.items}>

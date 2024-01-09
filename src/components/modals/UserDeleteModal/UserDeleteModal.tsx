@@ -6,7 +6,7 @@ interface IUserDeleteModal {
     setVisible: (value: boolean) => void;
     user: User;
 }
-//(components => modals, tables), pages
+
 function UserDeleteModal({ setVisible, user }: IUserDeleteModal) {
 
     return (
