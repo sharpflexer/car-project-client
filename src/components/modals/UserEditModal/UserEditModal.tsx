@@ -8,7 +8,7 @@ interface IUserModal {
     setUser: (value: User) => void
 }
 
-function UserEditModal({setVisible, user, setUser }: IUserModal) {
+function UserEditModal({ setVisible, user, setUser }: IUserModal) {
     return (
         <Modal
             title="Изменение пользователя"

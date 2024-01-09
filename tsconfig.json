@@ -20,13 +20,7 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "experimentalDecorators": true,
-    "baseUrl": "src",
-    "paths": {
-      "@modals/*": ["components/modals/*"],
-      "@shared/*": ["components/shared/*"],
-      "@shopcart/*": ["components/shopcart/*"],
-      "@tables/*": ["components/tables/*"],
-    },
+    "baseUrl": "src"
   },
   "include": [
     "src"

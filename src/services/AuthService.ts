@@ -4,6 +4,7 @@ import SignInFields from "types/SignInFields";
 import SignUpFields from "types/SignUpFields";
 import { ILogin } from "interfaces/ILogin";
 import { axiosConfig } from "./instance";
+import { Role } from "../enums/Role";
 
 /***
  * Сервис для отправки запросов на сервер.
@@ -53,6 +54,20 @@ class AuthService {
         if (response.status === 200) {
             toSignIn();
         }
+    }
+
+    /***
+     * Получает актуальную роль пользоваетля.
+     */
+    public async GetRole(): Promise<Role> {
+        const response = await this.instance.get("/api/auth/get_role");
+        if (response.status === 200) {
+            return response.data;
+        }
+        else{
+            return Role.None;
+        }
+        
     }
 }
 

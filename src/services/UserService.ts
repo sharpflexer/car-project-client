@@ -31,7 +31,7 @@ class UserService {
      * Обновляет пользователя
      */
     public async UpdateUser(userViewModel: User): Promise<boolean> {
-        return (await this.instance.put<User>("/api/user/update", 
+        return (await this.instance.put<User>("/api/user/update",
             userViewModel
         )).status === 200;
     }
@@ -40,7 +40,7 @@ class UserService {
      * Удаляет пользователя
      */
     public async DeleteUser(user: User): Promise<boolean> {
-        return (await this.instance.delete<User>("/api/user/delete", {data: user}))
+        return (await this.instance.delete<User>("/api/user/delete", { data: user }))
             .status === 200;
     }
 }
