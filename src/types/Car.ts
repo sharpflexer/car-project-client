@@ -6,5 +6,4 @@ export type Car = {
     model: CarProperty,
     color: CarProperty
     price: number
-
 }

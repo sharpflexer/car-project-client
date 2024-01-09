@@ -1,0 +1,36 @@
+.card{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 15px;
+    width: 800px;
+    height: 150px;
+    background-color: #C7C5F4;
+    border-radius: 20px;
+    margin: 15px;
+}
+
+.items{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.cartButton{
+    background: #fff;
+	font-size: 14px;
+	padding: 16px 20px;
+	border-radius: 26px;
+	border: 1px solid #D4D3E8;
+	text-transform: uppercase;
+	font-weight: 700;
+	display: flex;
+	align-items: center;
+    justify-content: center;
+	box-shadow: 0px 2px 2px #5C5696;
+    text-decoration: none;
+	cursor: pointer;
+    width: 150px;
+    height: 30px;
+}
