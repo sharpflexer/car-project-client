@@ -1,24 +1,21 @@
-import { useContext } from "react";
-import { StoreContext } from "../../..";
+
+import ReactDOM from "react-dom";
 import classes from "./ModalCart.module.css";
-import ReactDOM from 'react-dom';
 import IModalCart from "../../../interfaces/IModalCart";
-import Scroll from "../../share/Scroll/Scroll";
+import CartStore from "../../../store/CartStore";
+import Scroll from "../../shared/Scroll/Scroll";
 import CartCard from "../CartCard/CartCard";
 
 const ModalCart = ({ isCartActive, setCartActive }: IModalCart) => {
-
-    const { cartStore } = useContext(StoreContext);
-    const { cars } = cartStore;
+    const { cars } = CartStore;
 
     const mapItems = () => uniqueSortedItems().map(car => (
-        <CartCard car={car} />
+        <CartCard key={car.id} car={car} />
     ));
 
     const uniqueSortedItems = () => cars.filter((elem, index, self) => {
         return self.indexOf(elem) === index && self.includes(elem);
     }).sort((a, b) => a.id - b.id);
-
 
     function closeModal() {
         setCartActive(false);
@@ -33,14 +30,13 @@ const ModalCart = ({ isCartActive, setCartActive }: IModalCart) => {
                     <div className={classes.items}>
                         {mapItems()}
                         <div className={classes.totalPrice}>
-                            Итог: {cartStore.getTotalPrice()} рублей.
+                            Итог: {CartStore.getTotalPrice()} рублей.
                         </div>
                     </div>
                 </Scroll>
                 <button className={classes.close} onClick={closeModal}>
                     Закрыть
-                </button>
-                
+                </button> 
             </div>
         </div>
     ) : null;

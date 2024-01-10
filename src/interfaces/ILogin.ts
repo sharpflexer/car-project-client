@@ -1,6 +1,6 @@
 import { Role } from "../enums/Role";
 
-export interface ILogin{
+export interface ILogin {
     accessToken: string;
     roleName: Role;
 }

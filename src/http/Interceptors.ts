@@ -1,6 +1,5 @@
 import axios, { AxiosError, AxiosInstance, InternalAxiosRequestConfig } from 'axios';
 
-
 /***
  * Подкидывает JWT-токен в заголовок авторизации запроса.
  */
