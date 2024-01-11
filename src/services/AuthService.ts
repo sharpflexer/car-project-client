@@ -10,7 +10,6 @@ import SignUpFields from "../types/SignUpFields";
  * Сервис для отправки запросов на сервер.
  */
 class AuthService {
-
     /***
      *  Экземпляр axios с необходимиыми настройками.
      */
@@ -64,10 +63,16 @@ class AuthService {
         if (response.status === 200) {
             return response.data;
         }
-        else{
+        else {
             return Role.None;
         }
-        
+
+    }
+
+    public async LoginViaGoogle(code: string): Promise<ILogin> {
+        const response = await this.instance.get(`/api/auth/login_via_google?authCode=${code}`);
+
+        return response.data;
     }
 }
 
