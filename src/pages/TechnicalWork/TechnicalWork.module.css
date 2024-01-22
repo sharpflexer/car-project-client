@@ -5,8 +5,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100svw;
-    height: 100svh;
     background-image: url("../../../public/png/error_image.png");
     color:#a569dd73;
 }
@@ -22,9 +20,11 @@
 .errorCode{
     font-size: 700px;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    height: 90svh;
 }
 
 .description{
     font-size: 50px;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    height: 10svh;
 }
