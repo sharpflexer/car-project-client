@@ -8,7 +8,7 @@ import SignInFields from "../../../types/SignInFields";
 import { CredentialResponse, useGoogleLogin } from "@react-oauth/google";
 import AuthService from "../../../services/AuthService";
 
-const clientId = "512072756601-r7ibo68bvteters981sgf84cb5vvarer.apps.googleusercontent.com";
+const clientId = process.env.REACT_APP_CLIENT_ID;
 
 const SignInSchema = Yup.object().shape({
   login: Yup.string()
