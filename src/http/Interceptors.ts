@@ -11,6 +11,7 @@ const onRequest = (config: InternalAxiosRequestConfig): InternalAxiosRequestConf
         config.headers.Authorization = "Bearer " + token;
         console.info(`[request] [${JSON.stringify(config)}]`);
     }
+    
     return config;
 }
 
