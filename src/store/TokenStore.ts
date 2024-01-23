@@ -25,8 +25,10 @@ class TokenStore {
      async login({ login, password }: SignInFields): Promise<void> {
           try {
                const response = await AuthService.Login({ login, password });
-               localStorage.setItem('access_token', response.data.accessToken);
-               this.setAuth(true, response.data.roleName);
+               if (response.status === 200) {
+                    localStorage.setItem('access_token', response.data.accessToken);
+                    this.setAuth(true, response.data.roleName);
+               }
           } catch (e) {
                console.log(e);
           }

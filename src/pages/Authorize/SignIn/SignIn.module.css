@@ -83,3 +83,9 @@
 	margin-left: auto;
 	color: #7875B5;
 }
+
+.google_button{
+	border-style: none;
+	height: 46px;
+	width: 46px;
+}

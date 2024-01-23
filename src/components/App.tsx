@@ -4,6 +4,7 @@ import classes from "./App.module.css";
 import Admin from '../pages/Admin/Admin';
 import Authorize from '../pages/Authorize/Authorize';
 import Catalog from '../pages/Catalog/Catalog';
+import { useEffect } from 'react';
 
 function App() {
   const location = useLocation();
