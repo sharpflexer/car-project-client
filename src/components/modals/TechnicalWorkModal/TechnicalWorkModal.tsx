@@ -1,23 +1,29 @@
 import { TimePicker, Typography } from "antd";
 import dayjs, { Dayjs } from "dayjs";
 import classes from "./TechnicalWorkModal.module.css";
-import { useState } from "react";
-import TechnicalWork from "../../../pages/TechnicalWork/TechnicalWork";
+import { useContext, useState } from "react";
 import TechnicalWorkService from "../../../services/TechnicalWorkService";
 import { useNavigate } from "react-router-dom";
+import SocketContext from "../../../context/SocketContext";
+import { wait } from "@testing-library/user-event/dist/utils";
 
 function TechnicalWorkModal() {
     const [time, setTime] = useState<Dayjs | null>(null);
+    const socket = useContext(SocketContext);
     const navigate = useNavigate();
+
+    function timeout(delay: number) {
+        return new Promise( res => setTimeout(res, delay) );
+    }
 
     function startTechnicalWork(): void {
         if (time === null) {
             return;
         }
-        TechnicalWorkService.StartTechnicalWork(time)
-            .then(result => result ? navigate("/technicalWork")
-                : () => { });
-
+        socket.send("Authorization: " + localStorage.getItem("access_token"));
+        TechnicalWorkService.StartTechnicalWork(time);
+        timeout(5000)
+        .then(() => navigate("/technicalWork"));
     }
 
     const onChange = (time: Dayjs | null) => {
