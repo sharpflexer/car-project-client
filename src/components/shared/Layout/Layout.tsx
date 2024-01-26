@@ -2,7 +2,7 @@ import { Alert } from "antd";
 import IMain from "../../../interfaces/IMain";
 import Header from "../Header/Header";
 import classes from "./Layout.module.css";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import SocketContext from "../../../context/SocketContext";
 import { useNavigate } from "react-router-dom";
 
@@ -12,14 +12,14 @@ function Layout({ children }: IMain) {
     const navigate = useNavigate();
 
     const url = "wss://localhost:7191/api/notification/ws";
-    const [socket, setSocket] = useState(new WebSocket(url));
+    const socket = useRef(new WebSocket(url));
 
     function timeout(delay: number) {
         return new Promise( res => setTimeout(res, delay) );
     }
 
-    useEffect(() => {
-        socket.onmessage = (event: MessageEvent) => {
+    useLayoutEffect(() => {
+        socket.current.onmessage = (event: MessageEvent) => {
             setMessage(event.data);
             setAlertEnabled(true);
             timeout(5000)
@@ -30,7 +30,7 @@ function Layout({ children }: IMain) {
     return (
         <div>
             <Header />
-            <SocketContext.Provider value={socket}>
+            <SocketContext.Provider value={socket.current}>
                 <div className={classes.content}>
                     {children}
                 </div>

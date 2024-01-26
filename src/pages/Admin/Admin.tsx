@@ -5,7 +5,7 @@ import UserTable from "../../components/tables/UserTable/UserTable";
 import { Role } from "../../enums/Role";
 import TokenStore from "../../store/TokenStore";
 import Layout from "../../components/shared/Layout/Layout";
-import TechnicalWorkModal from "../../components/modals/TechnicalWorkModal/TechnicalWorkModal";
+import TechnicalWorkModal from "../../components/tabs/TechnicalWorkTab/TechnicalWorkTab";
 
 function Admin() {
     const { role } = TokenStore;

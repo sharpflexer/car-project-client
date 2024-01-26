@@ -1,11 +1,10 @@
 import { TimePicker, Typography } from "antd";
 import dayjs, { Dayjs } from "dayjs";
-import classes from "./TechnicalWorkModal.module.css";
+import classes from "./TechnicalWorkTab.module.css";
 import { useContext, useState } from "react";
 import TechnicalWorkService from "../../../services/TechnicalWorkService";
 import { useNavigate } from "react-router-dom";
 import SocketContext from "../../../context/SocketContext";
-import { wait } from "@testing-library/user-event/dist/utils";
 
 function TechnicalWorkModal() {
     const [time, setTime] = useState<Dayjs | null>(null);

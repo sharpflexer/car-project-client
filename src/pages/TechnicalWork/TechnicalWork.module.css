@@ -6,6 +6,7 @@
     justify-content: center;
     align-items: center;
     background-image: url("../../../public/png/error_image.png");
+    height: 100svh;
     color:#a569dd73;
 }
 
@@ -13,18 +14,19 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 50px;
+    margin-bottom: 150px;
+    height: 100svh;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .errorCode{
-    font-size: 700px;
+    font-size: 670px;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    height: 90svh;
+    height: 95svh;
 }
 
 .description{
     font-size: 50px;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    height: 10svh;
+    height: 5svh;
 }

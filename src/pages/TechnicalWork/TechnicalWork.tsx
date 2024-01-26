@@ -1,4 +1,3 @@
-import { Typography } from "antd";
 import classes from "./TechnicalWork.module.css";
 
 function TechnicalWork(){
