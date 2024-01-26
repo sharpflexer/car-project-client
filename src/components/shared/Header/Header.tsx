@@ -1,6 +1,6 @@
 import { observer } from "mobx-react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import classes from './Header.module.css';
 import { Role } from "../../../enums/Role";
 import CartStore from "../../../store/CartStore";
@@ -9,14 +9,11 @@ import ModalCart from "../../shopcart/ModalCart/ModalCart";
 
 function Header() {
     const [isCartActive, setCartActive] = useState(false);
+    const location = useLocation();
 
     function hasAccess(...rolesWithAccess: Role[]): boolean {
         TokenStore.checkoutRole();
         return rolesWithAccess.includes(TokenStore.role);
-    }
-
-    function openTechWorkModal(): void {
-        
     }
 
     return (
@@ -30,7 +27,7 @@ function Header() {
                     <Link className={classes.linkLayout + " " + classes.admin} to="/admin">
                         <div className={classes.element}>Панель администрирования</div>
                     </Link>) : null}
-                {window.location.href.includes("/catalog") ? (
+                {location.pathname.includes("/catalog") ? (
                     <div className={classes.cartContainer}>
                         <button className={classes.linkLayout + " " + classes.cart}
                             onClick={() => setCartActive(true)}>

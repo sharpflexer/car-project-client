@@ -6,6 +6,8 @@ import { Role } from "../../enums/Role";
 import TokenStore from "../../store/TokenStore";
 import Layout from "../../components/shared/Layout/Layout";
 import TechnicalWorkModal from "../../components/tabs/TechnicalWorkTab/TechnicalWorkTab";
+import { classicNameResolver } from "typescript";
+import classes from "./Admin.module.css";
 
 function Admin() {
     const { role } = TokenStore;
@@ -37,7 +39,7 @@ function Admin() {
     ]
     return (
         <Layout>
-            <Tabs style={{width: "800px"}} defaultActiveKey="cars" items={tabs} />
+            <Tabs popupClassName={classes.tabs} style={{width: "800px"}} defaultActiveKey="cars" items={tabs} />
         </Layout>
     );
 }

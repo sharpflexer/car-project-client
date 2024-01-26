@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosInstance, InternalAxiosRequestConfig } from 'axios';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { redirect, redirectDocument } from 'react-router-dom';
 import { Error } from '../types/Error';
 
 /***
@@ -19,8 +19,11 @@ const onRequest = (config: InternalAxiosRequestConfig): InternalAxiosRequestConf
  * Обрабатывает 401 и пытается обновить токен в случае получения такой ошибки.
  * Обрабатывает 503 и делает редирект на страницу технических работ.
  */
-const onResponseError = async (error: AxiosError<Error>): Promise<AxiosError> => {
+const onResponseError = async (error: AxiosError<Error>): Promise<AxiosError | Response> => {
     const originalRequest = error.config;
+    if(originalRequest?.headers._isRetry){
+        redirectDocument("/authorize");
+    }
     if (error.response?.data.statusCode === "401" && originalRequest && !originalRequest.headers._isRetry) {
         originalRequest.headers._isRetry = true;
         try {
@@ -33,7 +36,7 @@ const onResponseError = async (error: AxiosError<Error>): Promise<AxiosError> =>
         }
     }
     if(error.response?.data.statusCode === "503"){
-        window.location.href = "http://localhost:3000/technicalWork";
+        return redirect("/technicalWork");
     }
     else {
         console.error(`[response error] [${JSON.stringify(error)}]`);

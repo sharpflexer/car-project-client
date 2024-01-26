@@ -9,16 +9,16 @@ import { useNavigate } from "react-router-dom";
 function Layout({ children }: IMain) {
     const [isAlertEnabled, setAlertEnabled] = useState<boolean>(false);
     const [message, setMessage] = useState<string>("");
-    const navigate = useNavigate();
-
-    const url = "wss://localhost:7191/api/notification/ws";
-    const socket = useRef(new WebSocket(url));
+    const navigate = useNavigate();  
+    const socket = useRef({} as WebSocket);
 
     function timeout(delay: number) {
         return new Promise( res => setTimeout(res, delay) );
     }
 
     useLayoutEffect(() => {
+        socket.current = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL!);
+
         socket.current.onmessage = (event: MessageEvent) => {
             setMessage(event.data);
             setAlertEnabled(true);

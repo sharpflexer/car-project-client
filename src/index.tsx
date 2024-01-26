@@ -9,7 +9,7 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <BrowserRouter>
-    <GoogleOAuthProvider clientId="512072756601-r7ibo68bvteters981sgf84cb5vvarer.apps.googleusercontent.com">
+    <GoogleOAuthProvider clientId={process.env.REACT_APP_CLIENT_ID!}>
       <App />
     </GoogleOAuthProvider>
   </BrowserRouter>

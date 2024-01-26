@@ -5,15 +5,20 @@ import { Role } from "../enums/Role";
 
 class TokenStore {
      isAuth = false;
+     isTechnicalWorks = false;
      role: Role = Role.None;
 
      constructor() {
           makeAutoObservable(this);
      }
 
-     setAuth(bool: boolean, role: Role) {
-          this.isAuth = bool;
+     setAuth(isAuth: boolean, role: Role) {
+          this.isAuth = isAuth;
           this.role = role;
+     }
+
+     setTechnicalWorks(isTechnicalWorks: boolean){
+          this.isTechnicalWorks = isTechnicalWorks;
      }
 
      async checkoutRole(): Promise<void> {
