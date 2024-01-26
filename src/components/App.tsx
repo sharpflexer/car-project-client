@@ -1,10 +1,10 @@
 
-import {Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import classes from "./App.module.css";
 import Admin from '../pages/Admin/Admin';
 import Authorize from '../pages/Authorize/Authorize';
 import Catalog from '../pages/Catalog/Catalog';
-import { useEffect } from 'react';
+import TechnicalWork from '../pages/TechnicalWork/TechnicalWork';
 
 function App() {
   const location = useLocation();
@@ -15,8 +15,9 @@ function App() {
         <Routes location={location} key={location.key}>
           <Route path="*" element={<Navigate to="/authorize" replace={true} />} />
           <Route path="authorize" element={<Authorize />} />
-          <Route path="catalog" element={<Catalog />}/>
-          <Route path="admin" element={<Admin />}/>
+          <Route path="catalog" element={<Catalog />} />
+          <Route path="admin" element={<Admin />} />
+          <Route path="technicalWork" element={<TechnicalWork />} />
         </Routes>
       </div>
     </div>

@@ -15,6 +15,10 @@ function Header() {
         return rolesWithAccess.includes(TokenStore.role);
     }
 
+    function openTechWorkModal(): void {
+        
+    }
+
     return (
         <div className={classes.layout}>
             <label className={classes.title}>Car Shop Online</label>
@@ -26,17 +30,18 @@ function Header() {
                     <Link className={classes.linkLayout + " " + classes.admin} to="/admin">
                         <div className={classes.element}>Панель администрирования</div>
                     </Link>) : null}
-                <div className={classes.cartContainer}>
-                    <button className={classes.linkLayout + " " + classes.cart}
-                        onClick={() => setCartActive(true)}>
-                        Корзина
-                    </button>
-                    {CartStore.cars.length !== 0 ?
-                        <div className={classes.cartCount}>
-                            {CartStore.cars.length}
-                        </div>
-                        : null}
-                </div>
+                {window.location.href.includes("/catalog") ? (
+                    <div className={classes.cartContainer}>
+                        <button className={classes.linkLayout + " " + classes.cart}
+                            onClick={() => setCartActive(true)}>
+                            Корзина
+                        </button>
+                        {CartStore.cars.length !== 0 ?
+                            <div className={classes.cartCount}>
+                                {CartStore.cars.length}
+                            </div>
+                            : null}
+                    </div>) : null}
             </div>
             {isCartActive ? <ModalCart isCartActive={isCartActive} setCartActive={setCartActive} />
                 : null}

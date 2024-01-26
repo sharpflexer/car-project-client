@@ -5,6 +5,7 @@ import UserTable from "../../components/tables/UserTable/UserTable";
 import { Role } from "../../enums/Role";
 import TokenStore from "../../store/TokenStore";
 import Layout from "../../components/shared/Layout/Layout";
+import TechnicalWorkModal from "../../components/tabs/TechnicalWorkTab/TechnicalWorkTab";
 
 function Admin() {
     const { role } = TokenStore;
@@ -26,11 +27,17 @@ function Admin() {
             label: 'Пользователи',
             children: <UserTable />,
             disabled: checkoutAdmin()
+        },
+        {
+            key: 'technicalWork',
+            label: 'Технические работы',
+            children: <TechnicalWorkModal/>,
+            disabled: checkoutAdmin()
         }
     ]
     return (
         <Layout>
-            <Tabs defaultActiveKey="cars" items={tabs} />
+            <Tabs style={{width: "800px"}} defaultActiveKey="cars" items={tabs} />
         </Layout>
     );
 }

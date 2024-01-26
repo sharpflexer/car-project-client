@@ -1,4 +1,6 @@
 import axios, { AxiosError, AxiosInstance, InternalAxiosRequestConfig } from 'axios';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { Error } from '../types/Error';
 
 /***
  * Подкидывает JWT-токен в заголовок авторизации запроса.
@@ -9,15 +11,17 @@ const onRequest = (config: InternalAxiosRequestConfig): InternalAxiosRequestConf
         config.headers.Authorization = "Bearer " + token;
         console.info(`[request] [${JSON.stringify(config)}]`);
     }
+    
     return config;
 }
 
 /***
  * Обрабатывает 401 и пытается обновить токен в случае получения такой ошибки.
+ * Обрабатывает 503 и делает редирект на страницу технических работ.
  */
-const onResponseError = async (error: AxiosError): Promise<AxiosError> => {
+const onResponseError = async (error: AxiosError<Error>): Promise<AxiosError> => {
     const originalRequest = error.config;
-    if (error.response?.status === 401 && originalRequest && !originalRequest.headers._isRetry) {
+    if (error.response?.data.statusCode === "401" && originalRequest && !originalRequest.headers._isRetry) {
         originalRequest.headers._isRetry = true;
         try {
             const response = await axios.get("/api/auth/refresh");
@@ -27,6 +31,9 @@ const onResponseError = async (error: AxiosError): Promise<AxiosError> => {
         } catch (e) {
             console.log(`[refresh error] [${JSON.stringify(error)}]`)
         }
+    }
+    if(error.response?.data.statusCode === "503"){
+        window.location.href = "http://localhost:3000/technicalWork";
     }
     else {
         console.error(`[response error] [${JSON.stringify(error)}]`);
