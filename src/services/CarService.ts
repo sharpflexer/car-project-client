@@ -4,6 +4,7 @@ import setupInterceptorsTo from "../http/Interceptors";
 import { Car } from "../types/Car";
 import CarProperties from "../types/CarProperties";
 import ReadonlyCar from "../types/ReadonlyCar";
+import Interceptors from "../http/Interceptors";
 
 class CarService {
     /***
@@ -15,7 +16,7 @@ class CarService {
      *  Конструктор, устанавливающий интерцепторы.
      */
     constructor() {
-        this.instance = setupInterceptorsTo(this.instance);
+        this.instance = Interceptors.setupInterceptorsTo(this.instance);
     }
 
     /***

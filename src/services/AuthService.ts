@@ -5,6 +5,7 @@ import setupInterceptorsTo from "../http/Interceptors";
 import { ILogin } from "../interfaces/ILogin";
 import SignInFields from "../types/SignInFields";
 import SignUpFields from "../types/SignUpFields";
+import Interceptors from "../http/Interceptors";
 
 /***
  * Сервис для отправки запросов на сервер.
@@ -19,7 +20,7 @@ class AuthService {
      *  Конструктор, устанавливающий интерцепторы.
      */
     constructor() {
-        this.instance = setupInterceptorsTo(this.instance);
+        this.instance = Interceptors.setupInterceptorsTo(this.instance);
     }
 
     /***

@@ -3,6 +3,7 @@ import { axiosConfig } from "./instance";
 import setupInterceptorsTo from "../http/Interceptors";
 import { Car } from "../types/Car";
 import { User } from "../types/User";
+import Interceptors from "../http/Interceptors";
 
 class UserService {
     CreateCar(car: Car) {
@@ -17,7 +18,7 @@ class UserService {
      *  Конструктор, устанавливающий интерцепторы.
      */
     constructor() {
-        this.instance = setupInterceptorsTo(this.instance);
+        this.instance = Interceptors.setupInterceptorsTo(this.instance);
     }
 
     /***

@@ -1,26 +1,41 @@
-import { makeAutoObservable, observable } from "mobx";
+import { makeAutoObservable } from "mobx";
 import AuthService from "../services/AuthService";
 import SignInFields from "../types/SignInFields";
 import { Role } from "../enums/Role";
+import Interceptors from "../http/Interceptors";
 
 class TokenStore {
-     isAuth = false;
-     isTechnicalWorks = false;
+     isAuth = sessionStorage.getItem("isAuth") === "true";
+     isTechnicalWork = false;
      role: Role = Role.None;
 
      constructor() {
           makeAutoObservable(this);
+          Interceptors.setErrorHandlers(
+               this.onNotAuthenticated, 
+               this.onTechnicalWork);
+     }
+
+     onNotAuthenticated(): void {
+          this.setAuth(false, Role.None);
+          sessionStorage.setItem("isAuth", "false");
+     }
+
+     onTechnicalWork = (): void => {
+          this.setTechnicalWorks(true);
      }
 
      setAuth(isAuth: boolean, role: Role) {
           this.isAuth = isAuth;
+          sessionStorage.setItem("isAuth", `${isAuth}`);
+
           this.role = role;
      }
 
-     setTechnicalWorks(isTechnicalWorks: boolean){
-          this.isTechnicalWorks = isTechnicalWorks;
+     setTechnicalWorks = (isTechnicalWorks: boolean) =>{
+          this.isTechnicalWork = isTechnicalWorks;
      }
-
+     
      async checkoutRole(): Promise<void> {
           if (this.role === Role.None) {
                this.role = await AuthService.GetRole();
