@@ -1,29 +1,29 @@
 import { TimePicker, Typography } from "antd";
-import dayjs, { Dayjs } from "dayjs";
+import { Dayjs } from "dayjs";
 import classes from "./TechnicalWorkTab.module.css";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import TechnicalWorkService from "../../../services/TechnicalWorkService";
 import { useNavigate } from "react-router-dom";
-import SocketContext from "../../../context/SocketContext";
 import TimerPresets from "./TimerPresets";
+import WebSocketService from "../../../services/WebSocketService";
 
 function TechnicalWorkModal() {
     const [time, setTime] = useState<Dayjs | null>(null);
-    const socket = useContext(SocketContext);
     const navigate = useNavigate();
+    const { webSocket } = WebSocketService;
 
     function timeout(delay: number) {
-        return new Promise( res => setTimeout(res, delay) );
+        return new Promise(res => setTimeout(res, delay));
     }
 
     function startTechnicalWork(): void {
         if (time === null) {
             return;
         }
-        socket.send("Authorization: " + localStorage.getItem("access_token"));
+        webSocket.send("Authorization: " + localStorage.getItem("access_token"));
         TechnicalWorkService.StartTechnicalWork(time);
         timeout(5000)
-        .then(() => navigate("/technicalWork"));
+            .then(() => navigate("/technicalWork"));
     }
 
     return (
@@ -34,7 +34,8 @@ function TechnicalWorkModal() {
                 </Typography.Title>
                 <TimePicker format={"HH:mm"}
                     onChange={(time: Dayjs | null) => {
-                        setTime(time)}}
+                        setTime(time)
+                    }}
                     presets={TimerPresets()}
                 />
             </div>
